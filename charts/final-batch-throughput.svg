@@ -1,0 +1,84 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" width="900" height="540" font-family="IBM Plex Mono, ui-monospace, Menlo, monospace">
+  <rect width="900" height="540" fill="#fcfcfd"/>
+  <text x="30" y="34" font-size="17" font-weight="700" fill="#10141a" font-family="IBM Plex Sans Condensed, Helvetica, sans-serif">Cold favours NVFP4. Warm at four streams favours EXL3.</text>
+  <text x="30" y="54" font-size="12.5" fill="#4d5766">Batch throughput = total tokens ÷ batch wall · 8k · 256 tokens forced · n=8 · bars show min–max</text>
+
+  <line x1="90" y1="420" x2="850" y2="420" stroke="#c8ced7"/>
+  <line x1="90" y1="352" x2="850" y2="352" stroke="#dde1e7"/>
+  <line x1="90" y1="284" x2="850" y2="284" stroke="#dde1e7"/>
+  <line x1="90" y1="216" x2="850" y2="216" stroke="#dde1e7"/>
+  <line x1="90" y1="148" x2="850" y2="148" stroke="#dde1e7"/>
+  <line x1="90" y1="80"  x2="850" y2="80"  stroke="#dde1e7"/>
+  <text x="82" y="424" font-size="11" fill="#78828f" text-anchor="end">0</text>
+  <text x="82" y="356" font-size="11" fill="#78828f" text-anchor="end">10</text>
+  <text x="82" y="288" font-size="11" fill="#78828f" text-anchor="end">20</text>
+  <text x="82" y="220" font-size="11" fill="#78828f" text-anchor="end">30</text>
+  <text x="82" y="152" font-size="11" fill="#78828f" text-anchor="end">40</text>
+  <text x="82" y="84"  font-size="11" fill="#78828f" text-anchor="end">50</text>
+  <text x="30" y="72" font-size="11.5" font-weight="600" fill="#4d5766">tok/s</text>
+  <line x1="90" y1="66" x2="90" y2="420" stroke="#c8ced7"/>
+
+  <text x="240" y="452" font-size="13" font-weight="600" fill="#4d5766" text-anchor="middle">COLD prefix</text>
+  <text x="680" y="452" font-size="13" font-weight="600" fill="#4d5766" text-anchor="middle">WARM prefix</text>
+  <line x1="460" y1="66" x2="460" y2="432" stroke="#c8ced7" stroke-dasharray="4 4"/>
+
+  <!-- COLD nvfp4: 18.0[17.3-19.0] 23.5[22.0-24.4] 29.0[28.0-29.7] -->
+  <rect x="122" y="297.6" width="38" height="122.4" rx="4" fill="#eb6834"/>
+  <line x1="141" y1="290.8" x2="141" y2="308.4" stroke="#8a3a12" stroke-width="2.5"/>
+  <rect x="242" y="260.2" width="38" height="159.8" rx="4" fill="#eb6834"/>
+  <line x1="261" y1="254.1" x2="261" y2="270.4" stroke="#8a3a12" stroke-width="2.5"/>
+  <rect x="362" y="222.8" width="38" height="197.2" rx="4" fill="#eb6834"/>
+  <line x1="381" y1="218.0" x2="381" y2="229.6" stroke="#8a3a12" stroke-width="2.5"/>
+  <text x="141" y="286" font-size="13" font-weight="700" fill="#eb6834" text-anchor="middle">18.0</text>
+  <text x="261" y="249" font-size="13" font-weight="700" fill="#eb6834" text-anchor="middle">23.5</text>
+  <text x="381" y="213" font-size="14" font-weight="700" fill="#eb6834" text-anchor="middle">29.0</text>
+
+  <!-- COLD exl3 -->
+  <rect x="166" y="330.9" width="38" height="89.1" rx="4" fill="#2a78d6"/>
+  <line x1="185" y1="326.8" x2="185" y2="341.8" stroke="#1a4d8a" stroke-width="2.5"/>
+  <rect x="286" y="330.9" width="38" height="89.1" rx="4" fill="#2a78d6"/>
+  <line x1="305" y1="324.1" x2="305" y2="335.0" stroke="#1a4d8a" stroke-width="2.5"/>
+  <rect x="406" y="331.6" width="38" height="88.4" rx="4" fill="#2a78d6"/>
+  <line x1="425" y1="324.8" x2="425" y2="335.0" stroke="#1a4d8a" stroke-width="2.5"/>
+  <text x="185" y="322" font-size="13" font-weight="700" fill="#2a78d6" text-anchor="middle">13.1</text>
+  <text x="305" y="319" font-size="13" font-weight="700" fill="#2a78d6" text-anchor="middle">13.1</text>
+  <text x="425" y="319" font-size="13" font-weight="700" fill="#2a78d6" text-anchor="middle">13.0</text>
+
+  <!-- WARM nvfp4 -->
+  <rect x="502" y="298.3" width="38" height="121.7" rx="4" fill="#eb6834"/>
+  <line x1="521" y1="286.7" x2="521" y2="309.2" stroke="#8a3a12" stroke-width="2.5"/>
+  <rect x="622" y="258.2" width="38" height="161.8" rx="4" fill="#eb6834"/>
+  <line x1="641" y1="248.6" x2="641" y2="267.7" stroke="#8a3a12" stroke-width="2.5"/>
+  <rect x="742" y="220.1" width="38" height="199.9" rx="4" fill="#eb6834"/>
+  <line x1="761" y1="218.0" x2="761" y2="229.6" stroke="#8a3a12" stroke-width="2.5"/>
+  <text x="521" y="282" font-size="13" font-weight="700" fill="#eb6834" text-anchor="middle">17.9</text>
+  <text x="641" y="243" font-size="13" font-weight="700" fill="#eb6834" text-anchor="middle">23.8</text>
+  <text x="761" y="213" font-size="13" font-weight="700" fill="#eb6834" text-anchor="middle">29.4</text>
+
+  <!-- WARM exl3: 23.3[11.4-29.5] 29.8[21.0-37.5] 46.9[36.4-53.6] -->
+  <rect x="546" y="261.6" width="38" height="158.4" rx="4" fill="#2a78d6"/>
+  <line x1="565" y1="219.4" x2="565" y2="342.5" stroke="#1a4d8a" stroke-width="2.5"/>
+  <rect x="666" y="217.4" width="38" height="202.6" rx="4" fill="#2a78d6"/>
+  <line x1="685" y1="164.8" x2="685" y2="277.2" stroke="#1a4d8a" stroke-width="2.5"/>
+  <rect x="786" y="101.1" width="38" height="318.9" rx="4" fill="#2a78d6"/>
+  <line x1="805" y1="55.6" x2="805" y2="172.5" stroke="#1a4d8a" stroke-width="2.5"/>
+  <text x="565" y="213" font-size="13" font-weight="700" fill="#2a78d6" text-anchor="middle">23.3</text>
+  <text x="685" y="158" font-size="13" font-weight="700" fill="#2a78d6" text-anchor="middle">29.8</text>
+  <text x="805" y="49"  font-size="15" font-weight="700" fill="#2a78d6" text-anchor="middle">46.9</text>
+
+  <text x="163" y="438" font-size="11.5" fill="#78828f" text-anchor="middle">C1</text>
+  <text x="283" y="438" font-size="11.5" fill="#78828f" text-anchor="middle">C2</text>
+  <text x="403" y="438" font-size="11.5" fill="#78828f" text-anchor="middle">C4</text>
+  <text x="543" y="438" font-size="11.5" fill="#78828f" text-anchor="middle">C1</text>
+  <text x="663" y="438" font-size="11.5" fill="#78828f" text-anchor="middle">C2</text>
+  <text x="783" y="438" font-size="11.5" fill="#78828f" text-anchor="middle">C4</text>
+
+  <line x1="30" y1="474" x2="870" y2="474" stroke="#dde1e7"/>
+  <g font-size="12" font-weight="500">
+    <rect x="34" y="492" width="20" height="10" rx="2" fill="#eb6834"/>
+    <text x="62" y="501" fill="#4d5766">NVFP4 (k=3, MNBT 8192)</text>
+    <rect x="256" y="492" width="20" height="10" rx="2" fill="#2a78d6"/>
+    <text x="284" y="501" fill="#4d5766">EXL3 (draft_tp=2)</text>
+  </g>
+  <text x="30" y="524" font-size="11.5" fill="#78828f">Cold: ranges never overlap — NVFP4 wins. Warm C4: EXL3's worst run (36.4) beats NVFP4's best (29.7). Warm C1/C2 overlap — no winner claimed.</text>
+</svg>

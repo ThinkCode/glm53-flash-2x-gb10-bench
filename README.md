@@ -85,6 +85,39 @@ so quantization is changing the *rate*, not the answer.
 
 ---
 
+## FINAL NUMBERS (2026-08-30, n=8, both engines at production config)
+
+![Batch throughput with min-max error bars](charts/final-batch-throughput.svg)
+
+Batch throughput, 8k, `ignore_eos`, thinking off both, **8 runs per cell**, min–max in
+brackets:
+
+| C | NVFP4 cold | EXL3 cold | NVFP4 warm | EXL3 warm |
+|---|---|---|---|---|
+| 1 | **18.0** [17.3–19.0] | 13.1 [11.5–13.7] | 17.9 [16.3–19.6] | 23.3 [11.4–29.5] |
+| 2 | **23.5** [22.0–24.4] | 13.1 [12.5–14.1] | 23.8 [22.4–25.2] | 29.8 [21.0–37.5] |
+| 4 | **29.0** [28.0–29.7] | 13.0 [12.5–14.0] | 29.4 [28.0–29.7] | **46.9** [36.4–53.6] |
+
+**What separates and what doesn't:**
+
+- **Cold, every level: NVFP4 wins.** Ranges never overlap. 2.2× at C4.
+- **Warm at 4 streams: EXL3 wins.** Its *worst* run (36.4) beats NVFP4's *best* (29.7).
+  1.6×.
+- **Warm at 1–2 streams: no winner.** Distributions overlap; we do not claim one.
+
+At n=3 the warm C4 cell looked like a tie (34.4 vs 28.6, overlapping). At n=8 it
+separates. Sample size changed the conclusion, which is why the bars are on the chart.
+
+**NVFP4 gains nothing from warm: 29.0 → 29.4.** EXL3 goes 13.0 → 46.9, a **3.6×**
+swing from cache reuse alone. Latency follows: p50 at warm C4 is **20.1s (EXL3) vs
+34.3s (NVFP4)**, TTFT 2.6s vs 15.0s.
+
+Agent sessions are warm *and* concurrent — the one cell where separation is
+unambiguous. That is the basis for routing them to EXL3, and it is a narrower claim
+than this article originally made.
+
+---
+
 ## UPDATE (2026-08-30): NVFP4 concurrent throughput has more than doubled
 
 Two config changes, both from the reader who challenged this benchmark, at 8k C4:

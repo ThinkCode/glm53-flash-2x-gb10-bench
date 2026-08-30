@@ -1,0 +1,342 @@
+{
+ "quality": [
+  {
+   "workload": "ios-swift",
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 38.07564398828713,
+   "ttft": 0.8611724376678467,
+   "wall": 27.72880530357361,
+   "gen_tokens": 1024,
+   "chars": 4627,
+   "file": "/tmp/glm53-outputs/ios-swift__glm-5.3-flash-nvfp4.md"
+  },
+  {
+   "workload": "ios-swift",
+   "model": "glm-5.3-flash-exl3",
+   "decode": 22.963443870354734,
+   "ttft": 4.920359134674072,
+   "wall": 49.469531774520874,
+   "gen_tokens": 1024,
+   "chars": 0,
+   "file": "/tmp/glm53-outputs/ios-swift__glm-5.3-flash-exl3.md"
+  },
+  {
+   "workload": "android-kotlin",
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 37.68374105050527,
+   "ttft": 0.2609736919403076,
+   "wall": 27.408064603805542,
+   "gen_tokens": 1024,
+   "chars": 4180,
+   "file": "/tmp/glm53-outputs/android-kotlin__glm-5.3-flash-nvfp4.md"
+  },
+  {
+   "workload": "android-kotlin",
+   "model": "glm-5.3-flash-exl3",
+   "decode": 23.64879773287137,
+   "ttft": 0.47241783142089844,
+   "wall": 43.7305223941803,
+   "gen_tokens": 1024,
+   "chars": 0,
+   "file": "/tmp/glm53-outputs/android-kotlin__glm-5.3-flash-exl3.md"
+  },
+  {
+   "workload": "website",
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 37.171945248086395,
+   "ttft": 0.25944995880126953,
+   "wall": 27.780263900756836,
+   "gen_tokens": 1024,
+   "chars": 3727,
+   "file": "/tmp/glm53-outputs/website__glm-5.3-flash-nvfp4.md"
+  },
+  {
+   "workload": "website",
+   "model": "glm-5.3-flash-exl3",
+   "decode": 21.154765139855385,
+   "ttft": 0.4711129665374756,
+   "wall": 48.82918691635132,
+   "gen_tokens": 1024,
+   "chars": 0,
+   "file": "/tmp/glm53-outputs/website__glm-5.3-flash-exl3.md"
+  },
+  {
+   "workload": "python",
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 33.48493259854561,
+   "ttft": 0.26348423957824707,
+   "wall": 30.81460475921631,
+   "gen_tokens": 1024,
+   "chars": 4454,
+   "file": "/tmp/glm53-outputs/python__glm-5.3-flash-nvfp4.md"
+  },
+  {
+   "workload": "python",
+   "model": "glm-5.3-flash-exl3",
+   "decode": 29.684825408189845,
+   "ttft": 0.36645030975341797,
+   "wall": 34.82860517501831,
+   "gen_tokens": 1024,
+   "chars": 0,
+   "file": "/tmp/glm53-outputs/python__glm-5.3-flash-exl3.md"
+  }
+ ],
+ "depth": [
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 26.627170746197848,
+   "ttft": 15.026074409484863,
+   "prompt_tokens": 7868,
+   "prefill_tok_s": 523.623122419353,
+   "wall": 24.602817058563232
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-exl3",
+   "decode": 30.849740632847027,
+   "ttft": 14.31505012512207,
+   "prompt_tokens": 7874,
+   "prefill_tok_s": 550.0504665492992,
+   "wall": 22.581029891967773
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 34.012055537517654,
+   "ttft": 29.822824716567993,
+   "prompt_tokens": 30663,
+   "prefill_tok_s": 1028.1722235038737,
+   "wall": 37.32027506828308
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-exl3",
+   "decode": 34.51554287341859,
+   "ttft": 41.89129662513733,
+   "prompt_tokens": 30666,
+   "prefill_tok_s": 732.0374987294744,
+   "wall": 49.279364347457886
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-nvfp4",
+   "decode": 39.094122511917696,
+   "ttft": 96.33721566200256,
+   "prompt_tokens": 97166,
+   "prefill_tok_s": 1008.6029509188351,
+   "wall": 102.86002850532532
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-exl3",
+   "decode": 32.98960138086886,
+   "ttft": 123.12393069267273,
+   "prompt_tokens": 97174,
+   "prefill_tok_s": 789.2373111653993,
+   "wall": 130.8537905216217
+  }
+ ],
+ "concurrency": [
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 1,
+   "per_stream": 30.1235373482596,
+   "aggregate": 30.1235373482596,
+   "ttft": 7.682960510253906,
+   "wall": 16.1493399143219,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 2,
+   "per_stream": 14.253284495737628,
+   "aggregate": 28.506568991475255,
+   "ttft": 15.33501410484314,
+   "wall": 35.741397857666016,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 4,
+   "per_stream": 7.097187814408265,
+   "aggregate": 38.79815238561717,
+   "ttft": 19.26048743724823,
+   "wall": 72.13728475570679,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 6,
+   "per_stream": 8.282050100274077,
+   "aggregate": 59.39905239429594,
+   "ttft": 44.33915042877197,
+   "wall": 95.66871309280396,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 1,
+   "per_stream": 28.837961074445793,
+   "aggregate": 28.837961074445793,
+   "ttft": 9.818708658218384,
+   "wall": 18.6617169380188,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 2,
+   "per_stream": 26.47630343035121,
+   "aggregate": 52.95260686070242,
+   "ttft": 21.13784372806549,
+   "wall": 39.113983392715454,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 4,
+   "per_stream": 26.719458352569905,
+   "aggregate": 109.56775573460573,
+   "ttft": 40.17527723312378,
+   "wall": 76.36568140983582,
+   "errors": 0
+  },
+  {
+   "depth": 8000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 6,
+   "per_stream": 26.93662794505037,
+   "aggregate": 161.65523885271165,
+   "ttft": 58.999783873558044,
+   "wall": 115.52202653884888,
+   "errors": 0
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 1,
+   "per_stream": 28.723758205847947,
+   "aggregate": 28.723758205847947,
+   "ttft": 28.947301149368286,
+   "wall": 37.8268027305603,
+   "errors": 0
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 2,
+   "per_stream": 15.004110695014784,
+   "aggregate": 30.00822139002957,
+   "ttft": 45.464149713516235,
+   "wall": 66.05578303337097,
+   "errors": 0
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 3,
+   "per_stream": 9.269774918544009,
+   "aggregate": 30.796077701517067,
+   "ttft": 67.66935276985168,
+   "wall": 99.90211534500122,
+   "errors": 0
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 1,
+   "per_stream": 33.86697396690607,
+   "aggregate": 33.86697396690607,
+   "ttft": 36.390639781951904,
+   "wall": 43.92251634597778,
+   "errors": 0
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 2,
+   "per_stream": 27.61839257453802,
+   "aggregate": 55.23678514907604,
+   "ttft": 61.68965482711792,
+   "wall": 91.5143711566925,
+   "errors": 0
+  },
+  {
+   "depth": 32000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 3,
+   "per_stream": 28.022093581040604,
+   "aggregate": 84.72360005416016,
+   "ttft": 84.68273878097534,
+   "wall": 135.72720456123352,
+   "errors": 0
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 1,
+   "per_stream": 40.264995522106496,
+   "aggregate": 40.264995522106496,
+   "ttft": 89.80160808563232,
+   "wall": 96.14366722106934,
+   "errors": 0
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 2,
+   "per_stream": 27.33059744814623,
+   "aggregate": 54.66119489629246,
+   "ttft": 140.47923636436462,
+   "wall": 169.50574207305908,
+   "errors": 0
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-nvfp4",
+   "streams": 3,
+   "per_stream": 10.21705232518507,
+   "aggregate": 59.043842554972755,
+   "ttft": 184.76619744300842,
+   "wall": 271.21722316741943,
+   "errors": 0
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 1,
+   "per_stream": 29.244519254589093,
+   "aggregate": 29.244519254589093,
+   "ttft": 117.27864241600037,
+   "wall": 126.01035213470459,
+   "errors": 0
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 2,
+   "per_stream": 27.796215438694816,
+   "aggregate": 55.59243087738963,
+   "ttft": 182.8586723804474,
+   "wall": 254.61655354499817,
+   "errors": 0
+  },
+  {
+   "depth": 100000,
+   "model": "glm-5.3-flash-exl3",
+   "streams": 3,
+   "per_stream": 30.840138887779553,
+   "aggregate": 90.42778029850685,
+   "ttft": 247.3185498714447,
+   "wall": 378.4156150817871,
+   "errors": 0
+  }
+ ]
+}

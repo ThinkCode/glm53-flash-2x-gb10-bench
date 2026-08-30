@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 248" width="600" height="248" font-family="IBM Plex Mono, ui-monospace, Menlo, monospace">
+  <rect width="600" height="248" fill="#fcfcfd"/>
+  <text x="0" y="18" font-size="14" font-weight="700" fill="#10141a" font-family="IBM Plex Sans Condensed, Helvetica, sans-serif">Single stream: the ranking reverses</text>
+  <text x="0" y="35" font-size="11" fill="#4d5766">One request at a time, NVFP4 is faster and improves with depth.</text>
+  <g transform="translate(0,38)">
+    <line x1="52" y1="180" x2="580" y2="180" stroke="#dde1e7"/><line x1="52" y1="144.4" x2="580" y2="144.4" stroke="#dde1e7"/><line x1="52" y1="108.9" x2="580" y2="108.9" stroke="#dde1e7"/><line x1="52" y1="73.3" x2="580" y2="73.3" stroke="#dde1e7"/><line x1="52" y1="37.8" x2="580" y2="37.8" stroke="#dde1e7"/>
+    <text x="46" y="183" font-size="10.5" fill="#78828f" text-anchor="end">0</text><text x="46" y="148" font-size="10.5" fill="#78828f" text-anchor="end">10</text><text x="46" y="112" font-size="10.5" fill="#78828f" text-anchor="end">20</text><text x="46" y="77" font-size="10.5" fill="#78828f" text-anchor="end">30</text><text x="46" y="41" font-size="10.5" fill="#78828f" text-anchor="end">40</text>
+    <line x1="52" y1="20" x2="52" y2="180" stroke="#c8ced7"/>
+    <rect x="99.5" y="85.4" width="36" height="94.6" rx="4" fill="#eb6834"/><rect x="137.5" y="70.5" width="36" height="109.5" rx="4" fill="#2a78d6"/>
+    <text x="117.5" y="80" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">26.6</text><text x="155.5" y="65" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">30.8</text>
+    <text x="136" y="199" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">8k context</text>
+    <rect x="268.5" y="59.1" width="36" height="120.9" rx="4" fill="#eb6834"/><rect x="306.5" y="57.3" width="36" height="122.7" rx="4" fill="#2a78d6"/>
+    <text x="286.5" y="54" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">34.0</text><text x="324.5" y="52" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">34.5</text>
+    <text x="305" y="199" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">32k context</text>
+    <rect x="437.5" y="41.0" width="36" height="139.0" rx="4" fill="#eb6834"/><rect x="475.5" y="62.7" width="36" height="117.3" rx="4" fill="#2a78d6"/>
+    <text x="455.5" y="36" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">39.1</text><text x="493.5" y="58" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">33.0</text>
+    <text x="474" y="199" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">100k context</text>
+  </g>
+  <g transform="translate(0,240)" font-size="11" font-weight="500">
+    <rect x="0" y="-8" width="22" height="3" rx="1.5" fill="#eb6834"/><text x="28" y="-4" fill="#4d5766">NVFP4 + DFlash2</text>
+    <rect x="150" y="-8" width="22" height="3" rx="1.5" fill="#2a78d6"/><text x="178" y="-4" fill="#4d5766">EXL3 4bpw</text>
+  </g>
+</svg>

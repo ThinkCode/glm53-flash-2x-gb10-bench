@@ -1,0 +1,41 @@
+=== PHASE A: coding workloads, 1024 tokens, output captured ===
+  ios-swift        glm-5.3-flash-nvfp4     38.1 tok/s  TTFT 0.86s  wall  27.7s  1024 tok  4627 chars
+  ios-swift        glm-5.3-flash-exl3      23.0 tok/s  TTFT 4.92s  wall  49.5s  1024 tok  0 chars
+  android-kotlin   glm-5.3-flash-nvfp4     37.7 tok/s  TTFT 0.26s  wall  27.4s  1024 tok  4180 chars
+  android-kotlin   glm-5.3-flash-exl3      23.6 tok/s  TTFT 0.47s  wall  43.7s  1024 tok  0 chars
+  website          glm-5.3-flash-nvfp4     37.2 tok/s  TTFT 0.26s  wall  27.8s  1024 tok  3727 chars
+  website          glm-5.3-flash-exl3      21.2 tok/s  TTFT 0.47s  wall  48.8s  1024 tok  0 chars
+  python           glm-5.3-flash-nvfp4     33.5 tok/s  TTFT 0.26s  wall  30.8s  1024 tok  4454 chars
+  python           glm-5.3-flash-exl3      29.7 tok/s  TTFT 0.37s  wall  34.8s  1024 tok  0 chars
+
+=== PHASE B: depth sweep, single stream, 256 tokens ===
+      8k  glm-5.3-flash-nvfp4    prompt=   7868  TTFT   15.0s (  524 tok/s prefill)  decode  26.6 tok/s
+      8k  glm-5.3-flash-exl3     prompt=   7874  TTFT   14.3s (  550 tok/s prefill)  decode  30.8 tok/s
+     32k  glm-5.3-flash-nvfp4    prompt=  30663  TTFT   29.8s ( 1028 tok/s prefill)  decode  34.0 tok/s
+     32k  glm-5.3-flash-exl3     prompt=  30666  TTFT   41.9s (  732 tok/s prefill)  decode  34.5 tok/s
+    100k  glm-5.3-flash-nvfp4    prompt=  97166  TTFT   96.3s ( 1009 tok/s prefill)  decode  39.1 tok/s
+    100k  glm-5.3-flash-exl3     prompt=  97174  TTFT  123.1s (  789 tok/s prefill)  decode  33.0 tok/s
+
+=== PHASE C: concurrency x depth ===
+      8k C1  glm-5.3-flash-nvfp4    per-stream  30.1  aggregate   30.1  TTFT    7.7s  wall   16.1s
+      8k C2  glm-5.3-flash-nvfp4    per-stream  14.3  aggregate   28.5  TTFT   15.3s  wall   35.7s
+      8k C4  glm-5.3-flash-nvfp4    per-stream   7.1  aggregate   38.8  TTFT   19.3s  wall   72.1s
+      8k C6  glm-5.3-flash-nvfp4    per-stream   8.3  aggregate   59.4  TTFT   44.3s  wall   95.7s
+      8k C1  glm-5.3-flash-exl3     per-stream  28.8  aggregate   28.8  TTFT    9.8s  wall   18.7s
+      8k C2  glm-5.3-flash-exl3     per-stream  26.5  aggregate   53.0  TTFT   21.1s  wall   39.1s
+      8k C4  glm-5.3-flash-exl3     per-stream  26.7  aggregate  109.6  TTFT   40.2s  wall   76.4s
+      8k C6  glm-5.3-flash-exl3     per-stream  26.9  aggregate  161.7  TTFT   59.0s  wall  115.5s
+     32k C1  glm-5.3-flash-nvfp4    per-stream  28.7  aggregate   28.7  TTFT   28.9s  wall   37.8s
+     32k C2  glm-5.3-flash-nvfp4    per-stream  15.0  aggregate   30.0  TTFT   45.5s  wall   66.1s
+     32k C3  glm-5.3-flash-nvfp4    per-stream   9.3  aggregate   30.8  TTFT   67.7s  wall   99.9s
+     32k C1  glm-5.3-flash-exl3     per-stream  33.9  aggregate   33.9  TTFT   36.4s  wall   43.9s
+     32k C2  glm-5.3-flash-exl3     per-stream  27.6  aggregate   55.2  TTFT   61.7s  wall   91.5s
+     32k C3  glm-5.3-flash-exl3     per-stream  28.0  aggregate   84.7  TTFT   84.7s  wall  135.7s
+    100k C1  glm-5.3-flash-nvfp4    per-stream  40.3  aggregate   40.3  TTFT   89.8s  wall   96.1s
+    100k C2  glm-5.3-flash-nvfp4    per-stream  27.3  aggregate   54.7  TTFT  140.5s  wall  169.5s
+    100k C3  glm-5.3-flash-nvfp4    per-stream  10.2  aggregate   59.0  TTFT  184.8s  wall  271.2s
+    100k C1  glm-5.3-flash-exl3     per-stream  29.2  aggregate   29.2  TTFT  117.3s  wall  126.0s
+    100k C2  glm-5.3-flash-exl3     per-stream  27.8  aggregate   55.6  TTFT  182.9s  wall  254.6s
+    100k C3  glm-5.3-flash-exl3     per-stream  30.8  aggregate   90.4  TTFT  247.3s  wall  378.4s
+
+wrote /tmp/glm53-results.json and /tmp/glm53-outputs/

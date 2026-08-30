@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 268" width="600" height="268" font-family="IBM Plex Mono, ui-monospace, Menlo, monospace">
+  <rect width="600" height="268" fill="#fcfcfd"/>
+  <text x="0" y="18" font-size="14" font-weight="700" fill="#10141a" font-family="IBM Plex Sans Condensed, Helvetica, sans-serif">Aggregate throughput at 8k context</text>
+  <text x="0" y="35" font-size="11" fill="#4d5766">Total tok/s across all concurrent streams. EXL3 scales 5.6x, NVFP4 2x.</text>
+  <g transform="translate(0,38)">
+    <line x1="52" y1="200" x2="580" y2="200" stroke="#dde1e7"/><line x1="52" y1="147.4" x2="580" y2="147.4" stroke="#dde1e7"/><line x1="52" y1="94.7" x2="580" y2="94.7" stroke="#dde1e7"/><line x1="52" y1="42.1" x2="580" y2="42.1" stroke="#dde1e7"/>
+    <text x="46" y="203" font-size="10.5" fill="#78828f" text-anchor="end">0</text><text x="46" y="151" font-size="10.5" fill="#78828f" text-anchor="end">50</text><text x="46" y="98" font-size="10.5" fill="#78828f" text-anchor="end">100</text><text x="46" y="46" font-size="10.5" fill="#78828f" text-anchor="end">150</text>
+    <line x1="52" y1="20" x2="52" y2="200" stroke="#c8ced7"/>
+    <rect x="80.5" y="168.1" width="34" height="31.9" rx="4" fill="#eb6834"/><rect x="116.5" y="169.5" width="34" height="30.5" rx="4" fill="#2a78d6"/>
+    <text x="97.5" y="163" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">30.1</text><text x="133.5" y="163" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">28.8</text>
+    <text x="115" y="219" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">1 stream</text>
+    <rect x="207.5" y="169.8" width="34" height="30.2" rx="4" fill="#eb6834"/><rect x="243.5" y="143.9" width="34" height="56.1" rx="4" fill="#2a78d6"/>
+    <text x="224.5" y="165" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">28.5</text><text x="260.5" y="139" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">53.0</text>
+    <text x="242" y="219" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">2 streams</text>
+    <rect x="334.5" y="158.9" width="34" height="41.1" rx="4" fill="#eb6834"/><rect x="370.5" y="84.0" width="34" height="116.0" rx="4" fill="#2a78d6"/>
+    <text x="351.5" y="154" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">38.8</text><text x="387.5" y="79" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">109.6</text>
+    <text x="369" y="219" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">4 streams</text>
+    <rect x="461.5" y="137.1" width="34" height="62.9" rx="4" fill="#eb6834"/><rect x="497.5" y="28.8" width="34" height="171.2" rx="4" fill="#2a78d6"/>
+    <text x="478.5" y="132" font-size="10.5" font-weight="600" fill="#eb6834" text-anchor="middle">59.4</text><text x="514.5" y="24" font-size="10.5" font-weight="600" fill="#2a78d6" text-anchor="middle">161.7</text>
+    <text x="496" y="219" font-size="11" font-weight="500" fill="#4d5766" text-anchor="middle">6 streams</text>
+  </g>
+  <g transform="translate(0,260)" font-size="11" font-weight="500">
+    <rect x="0" y="-8" width="22" height="3" rx="1.5" fill="#eb6834"/><text x="28" y="-4" fill="#4d5766">NVFP4 + DFlash2</text>
+    <rect x="150" y="-8" width="22" height="3" rx="1.5" fill="#2a78d6"/><text x="178" y="-4" fill="#4d5766">EXL3 4bpw</text>
+  </g>
+</svg>

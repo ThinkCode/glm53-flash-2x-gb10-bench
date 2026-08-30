@@ -135,7 +135,10 @@ from another's work and TTFT becomes fiction — this is the single easiest way 
 publish a wrong prefill number.
 
 Settings for each engine: [`configs/nvfp4.md`](configs/nvfp4.md) ·
-[`configs/exl3.md`](configs/exl3.md). Both include the gotchas that cost us the most
+[`configs/exl3.md`](configs/exl3.md). **Exact upstream commits to check out:
+[`configs/upstream-pins.md`](configs/upstream-pins.md)** — both recipes were moving
+fast (one took 20 commits in a single day), so a later `main` may not reproduce
+these numbers. Both include the gotchas that cost us the most
 time, including two that will silently corrupt your results rather than fail loudly.
 
 ---

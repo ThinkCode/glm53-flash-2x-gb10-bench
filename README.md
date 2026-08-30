@@ -85,6 +85,40 @@ so quantization is changing the *rate*, not the answer.
 
 ---
 
+## UPDATE (2026-08-30): NVFP4 concurrent throughput has more than doubled
+
+Two config changes, both from the reader who challenged this benchmark, at 8k C4:
+
+| | cold | warm |
+|---|---|---|
+| recipe defaults (k=7, MNBT=1024) | 13.4 | 13.2 |
+| k=3 | 25.0 | 24.7 |
+| **k=3 + MNBT=8192** | **28.7** | **29.1** |
+| | **+114%** | **+120%** |
+
+`--max-num-batched-tokens 8192` is now upstream's TP2 default
+([3eef466](https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark/commit/3eef466))
+— vLLM silently derives 2048 under spec decode, and our 1024 was below even that.
+It gave **+15–18%** here and the **KV pool grew** 410,427 → 427,708, so it costs
+nothing. Upstream reports +57% on TP4 and calls it topology-agnostic; on TP2 the
+direction carries but the magnitude does not.
+
+### Where the engines stand now, 8k C4
+
+| | NVFP4 | EXL3 |
+|---|---|---|
+| cold | **28.7** | 13.3 |
+| warm | 29.1 | **45.0** |
+
+Cold, NVFP4 is now 2.2× ahead. Warm, EXL3 still leads but the gap fell from 3.4× to
+**1.5×**, and what remains is entirely the prefix cache. If `KpoolTailManager` is
+ever fixed, NVFP4 likely takes the lead outright.
+
+Agent sessions are warm, so EXL3 stays the default for them — but this is a close
+call now, not the rout the original article described.
+
+---
+
 ## CORRECTION 2 (2026-08-30): k=3 recovers +87% at C4 — the collapse had two causes
 
 A reader pointed out that our negative k=5 result says nothing about k=3, and that

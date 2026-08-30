@@ -103,16 +103,39 @@ mean accept length @ C3      2.27 – 3.67
 mean accept length @ C1      5.94 – 7.21
 ```
 
-Nothing is ever evicted and nothing ever queues. What collapses is the
-**speculative drafter**. DFlash2 proposes tokens the main model verifies; alone it
-lands 6–7 per step. Verifying several contexts in one batch, acceptance falls under
-a third — so every step pays the full draft-and-verify cost and keeps a fraction of
-the output.
+Nothing is ever evicted and nothing ever queues. Acceptance is clearly part of it:
+DFlash2 proposes tokens the main model verifies, and alone it lands 6–7 per step,
+but verifying several contexts in one batch drops that under a third.
 
-That also kills the other obvious fix: cutting the drafter from k=7 to k=5, as
-upstream proposes, made no difference to short work and was **worse** at depth
-(C3 6.1 → 5.0). Acceptance is a per-position quality problem; removing positions
-cannot help.
+Cutting the drafter from k=7 to k=5, as upstream proposes, made no difference to
+short work and was **worse** at depth (C3 6.1 → 5.0).
+
+### …but acceptance is not the whole cause
+
+A reader suggested removing the drafter entirely. Good reasoning — speculation
+verifies k+1 positions per stream, so four streams ask an already-saturated batch
+for roughly 8× the work. Tested at 8k:
+
+| | with DFlash2 | without |
+|---|---|---|
+| C1 per-stream | 30.1 | **14.1** |
+| C4 per-stream | 7.1 | **8.0** |
+| C4 aggregate | 38.8 | **34.6** |
+| KV pool | 410,427 | **615,641** |
+
+**Removing it halves single-stream and does not fix concurrency.** Keep the drafter.
+
+But compare the C1→C4 drop in each column: **−76% with DFlash2, still −43% with no
+speculative decoding at all.** So there is a substantial batching penalty underneath
+the acceptance effect that has nothing to do with the drafter. Acceptance decay
+amplifies the fall because there is further to fall from; it does not create it.
+
+**The mechanism behind that residual 43% is unknown.** Two explanations have been
+tested and withdrawn — KV preemption (falsified by a 25% larger pool) and
+acceptance-as-sole-cause (falsified by this test). The freed pool here, 615,641
+tokens at 2.35× concurrency, changing nothing is a third independent confirmation
+that capacity was never the constraint. If you know what this is, please open an
+issue.
 
 ---
 

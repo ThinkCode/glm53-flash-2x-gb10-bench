@@ -85,7 +85,47 @@ so quantization is changing the *rate*, not the answer.
 
 ---
 
-## CORRECTION (2026-08-30): the cause is prefix caching, and the original metric was wrong
+## CORRECTION 2 (2026-08-30): k=3 recovers +87% at C4 — the collapse had two causes
+
+A reader pointed out that our negative k=5 result says nothing about k=3, and that
+they had measured +28% at C6 on a TP4 stack with `FULL_DECODE_ONLY` CUDA graphs.
+**They were right.** Measured here at 8k with bench v3:
+
+| 8k | k=7 | **k=3** | |
+|---|---|---|---|
+| C4 batch, cold | 13.4 | **25.0** | **+87%** |
+| C4 batch, warm | 13.2 | **24.7** | **+87%** |
+| C4 p50 decode rate | 5.6 | **11.5** | +105% |
+| C4 p50 latency | 67.0s | **40.1s** | −40% |
+| C2 batch, cold | 17.2 | **20.3** | +18% |
+| C1 batch, cold | 14.2 | 14.7 | +3% (inside spread) |
+
+C4 spread was 0.2–1.0 tok/s, so +87% is far outside noise, and nothing regressed.
+They saw it on TP4 *with* CUDA graphs; we reproduce it on TP2 with `--enforce-eager`
+and no CUDA graphs, so the effect is robust across configurations.
+
+**This repo previously claimed "acceptance is a per-position quality problem, so
+removing positions cannot help."** That was generalised from one negative k=5 test
+and is deleted.
+
+### So the collapse had two independent causes
+
+| cause | fixable | effect |
+|---|---|---|
+| k=7 speculative overhead under batch | **yes — k=3** | +87% at C4 |
+| no prefix caching (`KpoolTailManager`) | no workaround found | warm ≡ cold |
+
+With k=3 the comparison splits by arm:
+
+- **Cold C4: NVFP4 25.0 vs EXL3 13.3** — NVFP4 nearly 2× ahead
+- **Warm C4: NVFP4 24.7 vs EXL3 45.0** — EXL3 1.8× ahead, entirely on cache reuse
+
+Agent sessions are warm, so EXL3 stays the right default for them — but **NVFP4 at
+k=3 is now competitive**, and better for cold or one-shot concurrent work.
+
+---
+
+## CORRECTION 1 (2026-08-30): the cause is prefix caching, and the original metric was wrong
 
 Two corrections, both material. Everything below this section is the original
 write-up and is superseded where it conflicts.

@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 520" width="900" height="520" font-family="IBM Plex Mono, ui-monospace, Menlo, monospace">
+  <rect width="900" height="520" fill="#fcfcfd"/>
+  <text x="30" y="34" font-size="17" font-weight="700" fill="#10141a" font-family="IBM Plex Sans Condensed, Helvetica, sans-serif">Batch throughput: only EXL3 benefits from a warm prefix</text>
+  <text x="30" y="54" font-size="12.5" fill="#4d5766">sum(completion_tokens) / batch_wall · 8k context · 256 tokens forced · median of 3 · k=7</text>
+
+  <line x1="90" y1="400" x2="820" y2="400" stroke="#c8ced7"/>
+  <line x1="90" y1="332" x2="820" y2="332" stroke="#dde1e7"/>
+  <line x1="90" y1="264" x2="820" y2="264" stroke="#dde1e7"/>
+  <line x1="90" y1="196" x2="820" y2="196" stroke="#dde1e7"/>
+  <line x1="90" y1="128" x2="820" y2="128" stroke="#dde1e7"/>
+  <line x1="90" y1="60"  x2="820" y2="60"  stroke="#dde1e7"/>
+  <text x="82" y="404" font-size="11" fill="#78828f" text-anchor="end">0</text>
+  <text x="82" y="336" font-size="11" fill="#78828f" text-anchor="end">10</text>
+  <text x="82" y="268" font-size="11" fill="#78828f" text-anchor="end">20</text>
+  <text x="82" y="200" font-size="11" fill="#78828f" text-anchor="end">30</text>
+  <text x="82" y="132" font-size="11" fill="#78828f" text-anchor="end">40</text>
+  <text x="82" y="64"  font-size="11" fill="#78828f" text-anchor="end">50</text>
+  <text x="30" y="88" font-size="11.5" font-weight="600" fill="#4d5766">tok/s</text>
+  <line x1="90" y1="46" x2="90" y2="400" stroke="#c8ced7"/>
+
+  <polyline fill="none" stroke="#2a78d6" stroke-width="3" points="212,254.5 455,180.4 698,94"/>
+  <polyline fill="none" stroke="#2a78d6" stroke-width="2" stroke-dasharray="7 5" points="212,310.2 455,308.9 698,309.6"/>
+  <polyline fill="none" stroke="#eb6834" stroke-width="3" points="212,299.4 455,272.2 698,310.2"/>
+  <polyline fill="none" stroke="#eb6834" stroke-width="2" stroke-dasharray="7 5" points="212,303.4 455,283 698,308.9"/>
+
+  <circle cx="212" cy="254.5" r="6" fill="#2a78d6" stroke="#fcfcfd" stroke-width="2"/>
+  <circle cx="455" cy="180.4" r="6" fill="#2a78d6" stroke="#fcfcfd" stroke-width="2"/>
+  <circle cx="698" cy="94"    r="6" fill="#2a78d6" stroke="#fcfcfd" stroke-width="2"/>
+  <circle cx="212" cy="310.2" r="5" fill="#fcfcfd" stroke="#2a78d6" stroke-width="2"/>
+  <circle cx="455" cy="308.9" r="5" fill="#fcfcfd" stroke="#2a78d6" stroke-width="2"/>
+  <circle cx="698" cy="309.6" r="5" fill="#fcfcfd" stroke="#2a78d6" stroke-width="2"/>
+  <circle cx="212" cy="299.4" r="6" fill="#eb6834" stroke="#fcfcfd" stroke-width="2"/>
+  <circle cx="455" cy="272.2" r="6" fill="#eb6834" stroke="#fcfcfd" stroke-width="2"/>
+  <circle cx="698" cy="310.2" r="6" fill="#eb6834" stroke="#fcfcfd" stroke-width="2"/>
+  <circle cx="212" cy="303.4" r="5" fill="#fcfcfd" stroke="#eb6834" stroke-width="2"/>
+  <circle cx="455" cy="283"   r="5" fill="#fcfcfd" stroke="#eb6834" stroke-width="2"/>
+  <circle cx="698" cy="308.9" r="5" fill="#fcfcfd" stroke="#eb6834" stroke-width="2"/>
+
+  <text x="712" y="90"  font-size="15" font-weight="700" fill="#2a78d6">45.0</text>
+  <text x="712" y="314" font-size="13" font-weight="700" fill="#2a78d6">13.3</text>
+  <text x="712" y="332" font-size="13" font-weight="700" fill="#eb6834">13.2</text>
+
+  <text x="212" y="424" font-size="12.5" font-weight="600" fill="#4d5766" text-anchor="middle">1 stream</text>
+  <text x="455" y="424" font-size="12.5" font-weight="600" fill="#4d5766" text-anchor="middle">2 streams</text>
+  <text x="698" y="424" font-size="12.5" font-weight="600" fill="#4d5766" text-anchor="middle">4 streams</text>
+
+  <line x1="30" y1="448" x2="870" y2="448" stroke="#dde1e7"/>
+  <g font-size="12" font-weight="500">
+    <line x1="34" y1="470" x2="60" y2="470" stroke="#2a78d6" stroke-width="3"/>
+    <text x="68" y="474" fill="#4d5766">EXL3 warm</text>
+    <line x1="176" y1="470" x2="202" y2="470" stroke="#2a78d6" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="210" y="474" fill="#4d5766">EXL3 cold</text>
+    <line x1="318" y1="470" x2="344" y2="470" stroke="#eb6834" stroke-width="3"/>
+    <text x="352" y="474" fill="#4d5766">NVFP4 warm</text>
+    <line x1="470" y1="470" x2="496" y2="470" stroke="#eb6834" stroke-width="2" stroke-dasharray="7 5"/>
+    <text x="504" y="474" fill="#4d5766">NVFP4 cold</text>
+  </g>
+  <text x="30" y="500" font-size="12" fill="#78828f">NVFP4's warm and cold lines sit on top of each other: 0 prefix-cache hits in 442,227 queries. EXL3 hits 40.2%.</text>
+</svg>

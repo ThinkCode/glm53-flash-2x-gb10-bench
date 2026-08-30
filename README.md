@@ -9,7 +9,7 @@ you will pick the wrong engine.
 
 📄 **Write-up:** [One model, two engines, opposite answers](https://claude.ai/code/artifact/505b2309-aa5c-46ed-8092-e60404a8c56b)
 
-![Per-stream throughput as concurrency rises, at 8k, 32k and 100k context](charts/concurrency-per-stream.svg)
+![Batch throughput at 8k: NVFP4 flat warm-vs-cold, EXL3 climbing](charts/batch-throughput-warm-cold.svg)
 
 Read the left-hand points and NVFP4 looks fine — level with EXL3 or ahead. Read the
 right-hand points and it has collapsed. EXL3's line is flat in all three panels.
@@ -21,7 +21,7 @@ variable is concurrency alone.
 
 ## Aggregate throughput
 
-![Aggregate throughput at 8k context](charts/aggregate-8k.svg)
+![NVFP4 k=7 versus k=3 batch throughput](charts/k7-vs-k3-nvfp4.svg)
 
 Same two machines. EXL3 turns six users into **5.6×** the throughput of one;
 NVFP4 manages **2×**.
@@ -108,6 +108,8 @@ and no CUDA graphs, so the effect is robust across configurations.
 removing positions cannot help."** That was generalised from one negative k=5 test
 and is deleted.
 
+![NVFP4 k=7 versus k=3 batch throughput](charts/k7-vs-k3-nvfp4.svg)
+
 ### So the collapse had two independent causes
 
 | cause | fixable | effect |
@@ -168,6 +170,8 @@ gets zero hits:
 | 4611 tok, unaligned | +0 | +9,222 |
 
 ### Corrected numbers (v3: `ignore_eos`, 3 runs, thinking off both, matched levels)
+
+![Batch throughput at 8k, warm versus cold](charts/batch-throughput-warm-cold.svg)
 
 Batch throughput, tok/s, 8k context:
 

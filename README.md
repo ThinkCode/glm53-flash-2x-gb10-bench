@@ -7,6 +7,8 @@ unified memory each, tensor-parallel 2 over dual-rail RoCE).
 of its throughput, while EXL3 does not move.** Benchmark one request at a time and
 you will pick the wrong engine.
 
+📄 **Write-up:** [One model, two engines, opposite answers](https://claude.ai/code/artifact/505b2309-aa5c-46ed-8092-e60404a8c56b)
+
 ![Per-stream throughput as concurrency rises, at 8k, 32k and 100k context](charts/concurrency-per-stream.svg)
 
 Read the left-hand points and NVFP4 looks fine — level with EXL3 or ahead. Read the

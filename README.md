@@ -139,6 +139,52 @@ issue.
 
 ---
 
+## EXL3: `DFLASH_DRAFT_TP=2` is worth +37% under concurrency
+
+Upstream changed this default on 2026-08-30
+([#48](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/pull/48)) — it
+shards the ~2.3 GiB DFlash2 drafter across both ranks instead of pinning it to rank
+0. Their commit reports the numbers "held", i.e. neutral, measured idle and
+single-stream.
+
+Under concurrency it is not neutral at all. At 8k:
+
+| 8k, per-stream decode | `draft_tp=1` | `draft_tp=2` | |
+|---|---|---|---|
+| C1 | 28.8 | **33.4** | +16% |
+| C4 | 26.7 | **36.6** | **+37%** |
+| C4 aggregate | 109.6 | **143.9** | +31% |
+
+At `draft_tp=2` the serve *gains* per-stream throughput from C1 → C4 (33.4 → 36.6).
+No other configuration tested here does that.
+
+**But their single-stream gain does not reproduce on this kit.** Running their own
+`tests/bench_decode.py`, same protocol:
+
+| | upstream `tp=2` | ours `tp=1` | ours `tp=2` |
+|---|---|---|---|
+| structured | 65.1 | 64.3 | **63.2** |
+| prose | 27.1 | 26.6 | **25.4** |
+
+They measure +5.5% structured; we measure −1.7% structured and −4.5% prose. Our
+`tp=1` baseline did reproduce their earlier published figures closely, so this is
+not a harness difference.
+
+**It costs KV pool: 1,754,237 → 1,444,444 tokens** (1.75× → 1.44× at 1M context).
+Sharding the drafter allocates draft KV on both ranks and the pool takes the
+minimum — the opposite of the memory saving you might expect. 18% of pool for +37%
+at C4 is a good trade at this context length, but check your headroom first if you
+run near the concurrency ceiling.
+
+Reported upstream as
+[issue #56](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/issues/56).
+
+The wider point is the same one this repo keeps running into: **a change can be
+neutral idle and decisive under load.** Upstream's evidence was not wrong, it was
+measured on the axis where the effect does not appear.
+
+---
+
 ## Reproducing
 
 Both engines must already be serving behind an OpenAI-compatible endpoint. The

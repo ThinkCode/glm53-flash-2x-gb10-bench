@@ -6,14 +6,23 @@ single day). Pin these to reproduce; a later `main` may not behave the same.
 ## EXL3 — MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
 
 ```
-79f10b91f84779b2b1ff2c9327b1a5847cd97f70   2026-08-29
-Merge pull request #40 from MiaAI-Lab/feat/prefill-mnbt-2048
+b5ab809   2026-08-30
+Merge pull request #26 from im0xMagnus/feat/per-rank-gid
 ```
+
+Adds, over the earlier `79f10b9` pin: `DFLASH_DRAFT_TP=2` as the new default
+(worth +37% per-stream at C4 here — see the README), a K-pool tail slot-mapping
+fix that could **crash or silently corrupt the indexer on long generations**, and
+per-rank GID handling. Take the kpool fix regardless of the throughput change;
+that class of bug is invisible until it isn't.
+
+Earlier pin, if you want the pre-`draft_tp` numbers:
+`79f10b91f84779b2b1ff2c9327b1a5847cd97f70` (2026-08-29).
 
 ```bash
 git clone https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
 cd GLM-5.3-Flash-EXL3-2x-DGX-Sparks
-git checkout 79f10b91f84779b2b1ff2c9327b1a5847cd97f70
+git checkout b5ab809
 BUILD=1 ./start.sh restart      # local build; published image lagged this commit
 ```
 

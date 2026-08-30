@@ -31,11 +31,23 @@ MAX_NUM_BATCHED_TOKENS=2048     # 8192 oversubscribes the GB10 indexer topk
 GPU_MEM_UTIL=0.87
 KV_CACHE_DTYPE=fp8
 
+DFLASH_DRAFT_TP=2               # shard drafter across ranks: +37% per-stream at C4
 GLM53_MIXED_PREFILL_CHUNK=skip
 GLM53_SUPPRESS_STOPS_IN_REASONING=1
 LIMIT_MM='{"image":4,"video":1}'
 SKIP_MM_PROFILING=1
 ```
+
+## `DFLASH_DRAFT_TP`
+
+Upstream default became `2` on 2026-08-30. Measured here: **+37% per-stream at C4**
+(26.7 → 36.6 tok/s), +16% at C1, and −18% KV pool (1.75× → 1.44× at 1M). Their own
+single-stream gain did not reproduce for us — we measure a small regression on
+`bench_decode.py` (structured 64.3 → 63.2, prose 26.6 → 25.4).
+
+Take it if you serve concurrent sessions. Roll back with `DFLASH_DRAFT_TP=1` if you
+are pool-constrained or run strictly single-stream. See the README and
+[upstream issue #56](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/issues/56).
 
 ## Gotchas
 

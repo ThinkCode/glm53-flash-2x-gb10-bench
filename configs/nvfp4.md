@@ -72,6 +72,31 @@ weight-only builds are W4A16, so expect slightly lower scores on hard reasoning.
 - **Raising the KV pool does not fix concurrent throughput.** See the README —
   4 -> 5 GiB (+25% pool) changed nothing, because nothing was ever being evicted.
 
+## Prefix caching does not work on this stack
+
+**Zero hits, ever** — 442,227 lookups, 0 hits. The engine enables prefix caching,
+then disables the hit path:
+
+```
+WARNING [kv_cache_coordinator.py:611] Disabling fine-grained prefix-cache hits
+because these KV cache managers require block-aligned lookups: KpoolTailManager
+```
+
+`KpoolTailManager` comes from the SM121 sparse-attention indexer patch (deviation 7)
+that this recipe requires on GB10. There is no alignment workaround: a prompt
+binary-searched to exactly 4608 tokens (2 × block-size 2304) and sent twice still
+gets 0 hits, as does the unaligned control.
+
+**If you are running multi-turn or agent workloads, this is the single most
+important fact about this deployment.** Every turn re-prefills the whole
+conversation — at 100k context and ~1000 tok/s prefill, roughly 100 s per turn of
+pure re-computation. It is invisible on single-shot prompts, which is why it took us
+a week of benchmarking to find.
+
+Filed upstream as
+[tonyd2wild#13](https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark/issues/13).
+Check whether it is fixed before assuming any concurrency number here still applies.
+
 ## Fabric
 
 Dual-rail RoCE, both NICs listed in `NCCL_IB_HCA`, with:

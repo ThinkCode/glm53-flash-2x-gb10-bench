@@ -85,6 +85,83 @@ so quantization is changing the *rate*, not the answer.
 
 ---
 
+## CORRECTION (2026-08-30): the cause is prefix caching, and the original metric was wrong
+
+Two corrections, both material. Everything below this section is the original
+write-up and is superseded where it conflicts.
+
+### 1. The aggregate metric was wrong
+
+v1 computed `aggregate = sum(per-stream decode rate)`. Those windows do not overlap
+when streams are staggered or queued, so it is **not** cluster throughput. Correct
+is `sum(completion_tokens) / batch_wall`. v1 also stored no per-request token
+counts, so nothing could be recomputed from the published artifact. Both flaws were
+pointed out by a reader and both are real.
+
+**The "EXL3 turns six users into 5.6× the throughput" claim is withdrawn.** The two
+engines' `max_num_seqs` also differed (EXL3 4, NVFP4 6), thinking was on for EXL3
+and off for NVFP4 in the entire concurrency phase, and every prompt used a unique
+salt — a cold-prefill worst case presented as a typical agent workload.
+
+### 2. NVFP4's prefix cache never hits — that is the real mechanism
+
+```
+vllm:prefix_cache_queries_total   442,227
+vllm:prefix_cache_hits_total            0
+```
+
+Zero hits, ever. The engine enables prefix caching, then:
+
+```
+WARNING [kv_cache_coordinator.py:611] Disabling fine-grained prefix-cache hits
+because these KV cache managers require block-aligned lookups: KpoolTailManager
+```
+
+`KpoolTailManager` is part of the SM121 sparse-attention indexer patch the NVFP4
+recipe requires on GB10. **There is no alignment workaround** — a prompt
+binary-searched to exactly 4608 tokens (2 × `block-size 2304`), sent twice, still
+gets zero hits:
+
+| prompt | hits | queries |
+|---|---|---|
+| 4608 tok, exactly 2×2304 | **+0** | +9,216 |
+| 4611 tok, unaligned | +0 | +9,222 |
+
+### Corrected numbers (v3: `ignore_eos`, 3 runs, thinking off both, matched levels)
+
+Batch throughput, tok/s, 8k context:
+
+| streams | NVFP4 cold | NVFP4 warm | EXL3 cold | EXL3 warm |
+|---|---|---|---|---|
+| 1 | 14.2 | 14.8 | 13.2 | **21.4** |
+| 2 | **17.2** | 18.8 | 13.4 | **32.3** |
+| 4 | 13.4 | 13.2 | 13.3 | **45.0** |
+
+**Cold C4 is a tie** (13.4 vs 13.3) — no engine advantage. **NVFP4 gains nothing
+from a warm prefix** (13.4 → 13.2) because it cannot cache. EXL3, at a 40.2% hit
+rate, goes 13.3 → 45.0. TTFT at warm C4: **17.7 s vs 2.6 s**.
+
+For agent sessions — which reuse context every turn — this is the whole story. A
+100k conversation re-prefills 100k tokens per turn on NVFP4.
+
+Reported upstream as
+[tonyd2wild#13](https://github.com/tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark/issues/13).
+
+### What this means about the explanations below
+
+The "acceptance collapse" section that follows is **a correlate, not the cause**.
+Acceptance does fall under concurrency and that is measured correctly, but the
+dominant effect is prefill re-computation. Four explanations have now been tested:
+KV preemption (falsified by a larger pool), acceptance-as-cause (falsified by
+removing the drafter entirely), speculation overhead (falsified — removing DFlash2
+halves single-stream and does not fix concurrency), and finally prefix caching,
+which is the first with a direct causal measurement.
+
+The routing decision — EXL3 for agent sessions — is unchanged and better supported
+than before.
+
+---
+
 ## Why NVFP4 falls over
 
 Not memory. Three deep sessions need ~300k tokens of KV against a 410k pool, so the

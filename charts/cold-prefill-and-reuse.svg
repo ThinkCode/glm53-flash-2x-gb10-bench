@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 480" width="900" height="480" font-family="IBM Plex Mono, ui-monospace, Menlo, monospace">
+  <rect width="900" height="480" fill="#fcfcfd"/>
+  <text x="30" y="32" font-size="17" font-weight="700" fill="#10141a" font-family="IBM Plex Sans Condensed, Helvetica, sans-serif">NVFP4 prefills 1.8× faster. EXL3 only has to do it once.</text>
+  <text x="30" y="52" font-size="12.5" fill="#4d5766">Upstream cold-prefill harness (MiaAI-Lab tests/_run_cold_prefill.py) · temp 0 · unique salt · one at a time</text>
+
+  <text x="30" y="86" font-size="12" font-weight="700" fill="#4d5766" letter-spacing="1.4">COLD PREFILL — tok/s</text>
+  <line x1="120" y1="270" x2="470" y2="270" stroke="#c8ced7"/>
+  <line x1="120" y1="200" x2="470" y2="200" stroke="#dde1e7"/>
+  <line x1="120" y1="130" x2="470" y2="130" stroke="#dde1e7"/>
+  <text x="112" y="274" font-size="10.5" fill="#78828f" text-anchor="end">0</text>
+  <text x="112" y="204" font-size="10.5" fill="#78828f" text-anchor="end">1000</text>
+  <text x="112" y="134" font-size="10.5" fill="#78828f" text-anchor="end">2000</text>
+  <line x1="120" y1="100" x2="120" y2="270" stroke="#c8ced7"/>
+  <polyline fill="none" stroke="#eb6834" stroke-width="3" points="163,153.3 245,152.1 327,149.5 430,147.2"/>
+  <polyline fill="none" stroke="#2a78d6" stroke-width="3" points="163,205.2 245,205.1 327,200.5 430,200.9"/>
+  <circle cx="163" cy="153.3" r="5" fill="#eb6834"/><circle cx="245" cy="152.1" r="5" fill="#eb6834"/><circle cx="327" cy="149.5" r="5" fill="#eb6834"/><circle cx="430" cy="147.2" r="5" fill="#eb6834"/>
+  <circle cx="163" cy="205.2" r="5" fill="#2a78d6"/><circle cx="245" cy="205.1" r="5" fill="#2a78d6"/><circle cx="327" cy="200.5" r="5" fill="#2a78d6"/><circle cx="430" cy="200.9" r="5" fill="#2a78d6"/>
+  <text x="440" y="140" font-size="13" font-weight="700" fill="#eb6834">1755</text>
+  <text x="440" y="215" font-size="13" font-weight="700" fill="#2a78d6">987</text>
+  <text x="163" y="292" font-size="11" fill="#78828f" text-anchor="middle">8k</text>
+  <text x="245" y="292" font-size="11" fill="#78828f" text-anchor="middle">12k</text>
+  <text x="327" y="292" font-size="11" fill="#78828f" text-anchor="middle">16k</text>
+  <text x="430" y="292" font-size="11" fill="#78828f" text-anchor="middle">100k</text>
+
+  <text x="530" y="86" font-size="12" font-weight="700" fill="#4d5766" letter-spacing="1.4">SAME PROMPT AGAIN — TTFT</text>
+  <line x1="560" y1="270" x2="860" y2="270" stroke="#c8ced7"/>
+  <text x="552" y="274" font-size="10.5" fill="#78828f" text-anchor="end">0s</text>
+  <text x="552" y="196" font-size="10.5" fill="#78828f" text-anchor="end">5s</text>
+  <text x="552" y="122" font-size="10.5" fill="#78828f" text-anchor="end">10s</text>
+  <line x1="560" y1="100" x2="560" y2="270" stroke="#c8ced7"/>
+  <line x1="560" y1="196" x2="860" y2="196" stroke="#dde1e7"/>
+  <line x1="560" y1="122" x2="860" y2="122" stroke="#dde1e7"/>
+  <rect x="600" y="141.3" width="46" height="128.7" rx="4" fill="#2a78d6" opacity="0.35"/>
+  <rect x="656" y="251.5" width="46" height="18.5" rx="4" fill="#2a78d6"/>
+  <text x="623" y="134" font-size="12" font-weight="700" fill="#2a78d6" text-anchor="middle">8.63</text>
+  <text x="679" y="244" font-size="12" font-weight="700" fill="#2a78d6" text-anchor="middle">1.25</text>
+  <text x="651" y="292" font-size="11.5" font-weight="600" fill="#2a78d6" text-anchor="middle">EXL3  6.9× faster</text>
+  <rect x="746" y="199.0" width="46" height="71.0" rx="4" fill="#eb6834" opacity="0.35"/>
+  <rect x="802" y="197.7" width="46" height="72.3" rx="4" fill="#eb6834"/>
+  <text x="769" y="192" font-size="12" font-weight="700" fill="#eb6834" text-anchor="middle">4.80</text>
+  <text x="825" y="190" font-size="12" font-weight="700" fill="#eb6834" text-anchor="middle">4.89</text>
+  <text x="797" y="292" font-size="11.5" font-weight="600" fill="#eb6834" text-anchor="middle">NVFP4  no change</text>
+  <text x="623" y="308" font-size="10" fill="#78828f" text-anchor="middle">1st / 2nd</text>
+  <text x="769" y="308" font-size="10" fill="#78828f" text-anchor="middle">1st / 2nd</text>
+
+  <line x1="30" y1="344" x2="870" y2="344" stroke="#dde1e7"/>
+  <g font-size="12" font-weight="500">
+    <rect x="34" y="362" width="20" height="10" rx="2" fill="#eb6834"/>
+    <text x="62" y="371" fill="#4d5766">NVFP4 — k=3, MNBT 8192</text>
+    <rect x="286" y="362" width="20" height="10" rx="2" fill="#2a78d6"/>
+    <text x="314" y="371" fill="#4d5766">EXL3 — draft_tp=2</text>
+  </g>
+  <text x="30" y="404" font-size="12.5" fill="#4d5766">EXL3's second request reuses <tspan font-weight="700">7,168 cached tokens</tspan>. NVFP4's reuses <tspan font-weight="700">0</tspan> — it re-prefills everything, every turn.</text>
+  <text x="30" y="428" font-size="12.5" fill="#78828f">So NVFP4 wins one-shot work over fresh context; EXL3 wins any conversation that revisits its own history.</text>
+  <text x="30" y="456" font-size="11.5" fill="#78828f">TTFT at 100k cold: NVFP4 57.0s, EXL3 101.3s.</text>
+</svg>

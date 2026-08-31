@@ -85,6 +85,54 @@ so quantization is changing the *rate*, not the answer.
 
 ---
 
+## PREFILL, RE-MEASURED (2026-08-31, upstream's own harness)
+
+Ran MiaAI-Lab's `tests/_run_cold_prefill.py` against both engines — an independent
+implementation, not ours. It confirmed the cache finding and **overturned our prefill
+numbers.**
+
+![Cold prefill and reuse](charts/cold-prefill-and-reuse.svg)
+
+### Cold prefill, tok/s
+
+| rung | NVFP4 | EXL3 |
+|---|---|---|
+| 8k | **1,667.7** | 925.9 |
+| 12k | **1,684.0** | 927.8 |
+| 16k | **1,722.0** | 992.6 |
+| 100k | **1,754.5** | 986.9 |
+
+**NVFP4 prefills ~1.8× faster than EXL3, and improves with depth.** TTFT at 100k cold:
+**57.0s vs 101.3s**.
+
+Earlier sections of this README report 1,009 (NVFP4) and 789 (EXL3). **Those are
+stale** — measured before k=3 and MNBT=8192, and they understate NVFP4 by ~74%. The
+`--max-num-batched-tokens` change in particular lifted prefill, which none of our own
+benchmarking isolated.
+
+### The same prompt, sent twice
+
+| | 1st TTFT | 2nd TTFT | cached tokens |
+|---|---|---|---|
+| **EXL3** | 8.63s | **1.25s** | **7,168** |
+| **NVFP4** | 4.80s | 4.89s | **0** |
+
+EXL3's second request is **6.9× faster**. NVFP4's is marginally *slower*, with zero
+reuse. This reproduces our prefix-cache finding using the upstream author's harness
+rather than our code — and it matches Mia's own published receipt for that rung
+(1.30s / 6,167 hits vs our 1.25s / 6,417).
+
+### What the trade actually is
+
+- **NVFP4** — 1.8× faster cold prefill, **no reuse**: every turn pays full price
+- **EXL3** — slower cold prefill, **6.9× faster on reuse**: pays once
+
+One-shot work over fresh context favours NVFP4 more clearly than this article
+originally said. Any conversation that revisits its own history favours EXL3, and the
+advantage compounds with every turn.
+
+---
+
 ## FINAL NUMBERS (2026-08-30, n=8, both engines at production config)
 
 ![Batch throughput with min-max error bars](charts/final-batch-throughput.svg)

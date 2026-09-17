@@ -34,6 +34,45 @@ robustness work. The build compiles the `exllamav3` wheel and takes ~25–30 min
 Notable in this pin: `MAX_NUM_BATCHED_TOKENS` moved 1024 → 2048 (commit `c9f731f`)
 after upstream's cold-prefill ladder. We measured on 2048.
 
+## EXL3 — v1.5 pin (2026-09-17)
+
+The 2026-09-17 reproduction above ran on a much newer tree. Everything below was
+read off the live node, not inferred.
+
+```
+bc68f310f8d5e941227ce5c93e95bca43b50fd6c   2026-09-16
+Merge pull request #202 from MiaAI-Lab/feat/cooperative-moe-c1
+```
+
+| | |
+|---|---|
+| Image | `ghcr.io/miaai-lab/glm-5.3-flash-2x-dgx-sparks:exl3-instanttensor`, config digest `sha256:ef9f5013c41adf93a5171abb809283be0f202b88fd14098e4434337715614c62` |
+| Weights | `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw` @ `25a44fdbf16862a46b7cc9921142c6c81350af2f` |
+| Drafter | `incoai/GLM-5.3-Flash-DFlash2` @ `dc77ff1c99eeb2df044ee3d4f0094eb033fee410` |
+
+```bash
+git clone https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks
+cd GLM-5.3-Flash-EXL3-2x-DGX-Sparks
+git checkout bc68f31
+cp .env.example .env            # then set HEAD_IP / WORKER_IP / CX7 pins for your kit
+./start.sh                      # pulls the GHCR image; no local build needed at this pin
+```
+
+Unlike the `b5ab809` pin, the published image was **current with `main`** when we
+checked (identical config digest), so a plain pull is enough. `main` was 3 commits
+ahead (`6961fa0`): a TP3/TP4 launcher fix and the 1.5.0 CHANGELOG — nothing that
+touches the 2-node path.
+
+Two things moved upstream since the earlier pin that you should know before you
+copy old env files:
+
+- `MAX_MODEL_LEN` default is now **850000**, not 1M. `MAX_NUM_BATCHED_TOKENS=7168`
+  together with `GLM53_INDEXER_WORKSPACE=rightsize` did **not** boot for us at 1M
+  (the rightsize workspace is sized from MNBT, so the two compete for the same
+  memory). At 850k it boots and gives a 1,020,958-token pool (1.20x).
+- `GLM53_MIXED_PREFILL_CHUNK` now defaults to **`fair`** (v5, 2026-09-15). We still
+  run `skip`. Not measured either way here; it is an interactivity feature.
+
 ## NVFP4 — tonyd2wild/GLM-5.3-Flash-NVFP4-DFlash2-2x-DGX-Spark
 
 ```

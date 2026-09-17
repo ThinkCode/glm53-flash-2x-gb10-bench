@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 420" font-family="Helvetica,Arial,sans-serif">
+<rect width="760" height="420" fill="#0f1117"/>
+<text x="60" y="30" fill="#e6e6e6" font-size="18" font-weight="700">EXL3 recipe v1.5 (bc68f31): author receipts vs this kit</text>
+<text x="60" y="50" fill="#9aa0a6" font-size="12">MiaAI-Lab tests/bench_decode.py, 5 runs x 400 tok, temp 0, DFlash2 k=7, thinking off. tok/s.</text>
+<line x1="60" x2="740" y1="350.0" y2="350.0" stroke="#2a2e37"/>
+<text x="52" y="354.0" fill="#9aa0a6" font-size="11" text-anchor="end">0</text>
+<line x1="60" x2="740" y1="303.3" y2="303.3" stroke="#2a2e37"/>
+<text x="52" y="307.3" fill="#9aa0a6" font-size="11" text-anchor="end">30</text>
+<line x1="60" x2="740" y1="256.7" y2="256.7" stroke="#2a2e37"/>
+<text x="52" y="260.7" fill="#9aa0a6" font-size="11" text-anchor="end">60</text>
+<line x1="60" x2="740" y1="210.0" y2="210.0" stroke="#2a2e37"/>
+<text x="52" y="214.0" fill="#9aa0a6" font-size="11" text-anchor="end">90</text>
+<line x1="60" x2="740" y1="163.3" y2="163.3" stroke="#2a2e37"/>
+<text x="52" y="167.3" fill="#9aa0a6" font-size="11" text-anchor="end">120</text>
+<line x1="60" x2="740" y1="116.7" y2="116.7" stroke="#2a2e37"/>
+<text x="52" y="120.7" fill="#9aa0a6" font-size="11" text-anchor="end">150</text>
+<line x1="60" x2="740" y1="70.0" y2="70.0" stroke="#2a2e37"/>
+<text x="52" y="74.0" fill="#9aa0a6" font-size="11" text-anchor="end">180</text>
+<rect x="92.0" y="252.2" width="51.0" height="97.8" fill="#7f8c9a" rx="2"/>
+<text x="117.5" y="246.2" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">62.9</text>
+<rect x="147.0" y="252.2" width="51.0" height="97.8" fill="#4cc38a" rx="2"/>
+<text x="172.5" y="246.2" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">62.9</text>
+<text x="145.0" y="372" fill="#e6e6e6" font-size="12" text-anchor="middle">Structured x1</text>
+<text x="145.0" y="390" fill="#4cc38a" font-size="12" text-anchor="middle" font-weight="600">+0.0%</text>
+<rect x="262.0" y="189.3" width="51.0" height="160.7" fill="#7f8c9a" rx="2"/>
+<text x="287.5" y="183.3" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">103.3</text>
+<rect x="317.0" y="190.2" width="51.0" height="159.8" fill="#4cc38a" rx="2"/>
+<text x="342.5" y="184.2" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">102.7</text>
+<text x="315.0" y="372" fill="#e6e6e6" font-size="12" text-anchor="middle">Structured x2 (agg)</text>
+<text x="315.0" y="390" fill="#4cc38a" font-size="12" text-anchor="middle" font-weight="600">-0.6%</text>
+<rect x="432.0" y="122.1" width="51.0" height="227.9" fill="#7f8c9a" rx="2"/>
+<text x="457.5" y="116.1" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">146.5</text>
+<rect x="487.0" y="92.7" width="51.0" height="257.3" fill="#4cc38a" rx="2"/>
+<text x="512.5" y="86.7" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">165.4</text>
+<text x="485.0" y="372" fill="#e6e6e6" font-size="12" text-anchor="middle">Structured x4 (agg)</text>
+<text x="485.0" y="390" fill="#4cc38a" font-size="12" text-anchor="middle" font-weight="600">+12.9%</text>
+<rect x="602.0" y="307.8" width="51.0" height="42.2" fill="#7f8c9a" rx="2"/>
+<text x="627.5" y="301.8" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">27.1</text>
+<rect x="657.0" y="312.4" width="51.0" height="37.6" fill="#4cc38a" rx="2"/>
+<text x="682.5" y="306.4" fill="#e6e6e6" font-size="12" text-anchor="middle" font-weight="600">24.2</text>
+<text x="655.0" y="372" fill="#e6e6e6" font-size="12" text-anchor="middle">Prose x1 (stock)</text>
+<text x="655.0" y="390" fill="#e5a445" font-size="12" text-anchor="middle" font-weight="600">-10.7%</text>
+<rect x="590" y="62" width="12" height="12" fill="#7f8c9a"/><text x="607" y="73" fill="#9aa0a6" font-size="12">author (README)</text>
+<rect x="590" y="82" width="12" height="12" fill="#4cc38a"/><text x="607" y="93" fill="#9aa0a6" font-size="12">ours, 2026-09-17</text>
+</svg>

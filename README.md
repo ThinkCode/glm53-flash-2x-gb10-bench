@@ -19,6 +19,44 @@ variable is concurrency alone.
 
 ---
 
+## UPDATE (2026-09-17): EXL3 recipe v1.5 reproduces the author's decode table
+
+Upstream moved a long way since the pins below (`b5ab809` -> **`bc68f31`**, PR #202):
+a new TR3 quant, the `instanttensor` loader, E3 prefill, `rightsize` indexer
+workspace, and an 850k default context. We re-ran **the author's own harness**
+(`tests/bench_decode.py`, 5 runs x 400 tokens, temp 0, thinking off, DFlash2 k=7)
+against a stock v1.5 serve to see whether her published numbers hold on a second kit.
+
+![Author receipts vs ours, v1.5](charts/exl3-v15-author-vs-ours.svg)
+
+| | author (README) | ours | delta |
+|---|---:|---:|---:|
+| Structured x1, stream | 62.9 | **62.9** | 0.0% |
+| Structured x2, aggregate | 103.3 | **102.7** | -0.5% |
+| Structured x4, aggregate | 146.5 | **165.4** | **+12.9%** |
+| Prose x1, stock config | 27.1 (range 18-27) | **24.2** | -10.7% |
+
+**They hold.** Structured reproduces to the decimal at x1 and we come out ahead at
+x4. Prose sits inside her stated 18-27 range, ~11% under her single lab receipt;
+acceptance is slightly *higher* than hers (0.355 vs 0.341), so the gap is per-step
+cost, not the drafter. Our TTFT under concurrency is 0.34-0.41 s where her table
+lists 6.3-6.6 s; hers almost certainly includes queueing from a different launch
+pattern, so treat that column as non-comparable rather than as a win.
+
+**Which of her tables you compare against depends on config.** Her prose headline
+(32.1 x1 / 41.2 agg x2) requires two opt-ins, `GLM53_ADAPTIVE_K=ema` and
+`GLM53_DENSE_FP8=dense,kda`. We run neither: adaptive-k measured negative in all
+six cells on our code-heavy workload (it helps low-acceptance essays, and she says
+so), and DENSE_FP8 is marked provisional upstream because it rounds the target's
+dense projections to FP8. The **stock** row is the honest comparison.
+
+One harness note for anyone reproducing: `bench_decode.py` hardcodes
+`MODEL = "GLM-5.3-Flash-EXL3"`. If your `SERVED_MODEL_NAME` differs you get a 404,
+not a helpful error. Raw JSON: [`results/bench-decode-20260917/`](results/bench-decode-20260917/).
+Exact pins for this run: [`configs/upstream-pins.md`](configs/upstream-pins.md#exl3--v15-pin-2026-09-17).
+
+---
+
 ## Aggregate throughput
 
 ![NVFP4 k=7 versus k=3 batch throughput](charts/k7-vs-k3-nvfp4.svg)

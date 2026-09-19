@@ -19,6 +19,46 @@ variable is concurrency alone.
 
 ---
 
+## UPDATE (2026-09-19): if simple requests "wait", check `GLM53_MIXED_PREFILL_CHUNK` before the engine
+
+We'd been carrying `GLM53_MIXED_PREFILL_CHUNK=skip` from the pre-09-15 default
+through two upgrades. The symptom was trivial requests hanging for minutes with the
+engine reporting healthy, zero preemptions, and most of the KV pool free.
+
+The engine's own 10 s log showed it plainly:
+
+```
+run=1 wait=1 kv=14.5%     a second request parked with 85% of KV free
+run=0 wait=1 kv=0.0%      parked with nothing running at all
+```
+
+That is admission, not capacity. Upstream documents `skip` as: *"starves prefills
+until decode ends (the reported multi-minute newcomer freeze)"* — no age limit, no
+deferral cap, a 2k prompt and a 30k prompt meet the same predicate. On a shared agent
+endpoint every new request waits for whichever session happens to be mid-generation.
+
+**Fix:** `GLM53_MIXED_PREFILL_CHUNK=fair` (upstream default since 2026-09-15, v5).
+The scheduler overlay is bind-mounted, so no rebuild — but the env is read at boot,
+so it needs a restart (`SKIP_PULL=1` if you are on a local build).
+
+**Receipt** — a one-line prompt sent 10 s into a 3000-token thinking-on essay:
+
+| | `skip` | `fair` v5 |
+|---|---|---|
+| newcomer answered after | the whole essay, **~190 s** | **17 s**, essay still streaming |
+| incumbent | — | 3000 tok at 15.6 tok/s across the overlap |
+
+Upstream's own TP=2 receipt for the same shape is ~12 s for a 2k newcomer.
+
+The three values are not a dial. `skip` protects the incumbent's decode rate by
+denying every newcomer indefinitely. `0`/`off` admits newcomers in ~1 s and
+collapses the incumbent 10–36× on TP=2 (upstream's number). `fair` is the only one
+fit for multi-session serving. Our earlier decode benchmarks were single- or
+matched-stream and would never have shown this; if you copied `skip` from our
+[`configs/exl3.md`](configs/exl3.md), change it.
+
+---
+
 ## UPDATE (2026-09-18): EXL3 1.6.0 thin-decode — +8% median reproduced, and a slow tail the medians hide
 
 Upstream 1.6.0 (`ca85576`) ships one TP=2 decode change: an opt-in SM121 K4/N256

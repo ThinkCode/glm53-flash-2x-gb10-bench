@@ -32,7 +32,7 @@ GPU_MEM_UTIL=0.87
 KV_CACHE_DTYPE=fp8
 
 DFLASH_DRAFT_TP=2               # shard drafter across ranks: +37% per-stream at C4
-GLM53_MIXED_PREFILL_CHUNK=skip
+GLM53_MIXED_PREFILL_CHUNK=fair  # was skip -- skip starves newcomers for the whole incumbent generation; see README 2026-09-19
 GLM53_SUPPRESS_STOPS_IN_REASONING=1
 LIMIT_MM='{"image":4,"video":1}'
 SKIP_MM_PROFILING=1
@@ -96,7 +96,7 @@ EXL3_FUSED_MOE=1
 EXL3_FAT_GROUPED=1
 # EXL3_FAT_KERNEL unset -> start.sh default 1 (E2/E3 fat-expert kernel on)
 
-GLM53_MIXED_PREFILL_CHUNK=skip  # OURS; upstream default is now `fair`
+GLM53_MIXED_PREFILL_CHUNK=skip  # WRONG for shared serving -- changed to fair 2026-09-19, see README
 GLM53_DEFAULT_REASONING_EFFORT=low   # OURS; upstream leaves empty
 GLM53_BOOT_SHAPE_WARMUP=1
 GLM53_SUPPRESS_STOPS_IN_REASONING=1
@@ -127,3 +127,11 @@ GLM53_EXL3_MOE_FAST=1                      # thin-decode; needs an image built f
 
 Both `docker run` lines in `start.sh` carry `--oom-score-adj 1000` locally so the
 engine is killed before sshd/systemd if memory runs out. Pool: 915,507 tok / 1.08x.
+
+## 2026-09-19: `GLM53_MIXED_PREFILL_CHUNK=fair`
+
+Replaces `skip` in every block above. `skip` denies admission to any new request
+while another is decoding, with no deferral cap; on a shared endpoint that is a
+multi-minute freeze for one-line prompts. `fair` v5 (upstream default since
+2026-09-15) gives a newcomer its first token in ~12-17 s while the incumbent keeps
+streaming. Bind-mounted overlay, no rebuild; restart required.

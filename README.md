@@ -19,6 +19,52 @@ variable is concurrency alone.
 
 ---
 
+## UPDATE (2026-09-18): EXL3 1.6.0 thin-decode — +8% median reproduced, and a slow tail the medians hide
+
+Upstream 1.6.0 (`ca85576`) ships one TP=2 decode change: an opt-in SM121 K4/N256
+thin-decode kernel for routed experts, `GLM53_EXL3_MOE_FAST=1`. Author's A/B/A2
+claims +7.7% structured, +8.9% code, +9.3% prose (raw). We A/B'd it on the same
+image and boot geometry with her harness.
+
+![Every run, FAST=0 vs FAST=1](charts/exl3-moe-fast-ab-runs.svg)
+
+| cell | FAST=0 | FAST=1 | delta median | author | sd 0 -> 1 |
+|---|---:|---:|---:|---:|---|
+| structured x1 | 63.1 | **68.1** | **+7.9%** | +7.7% | 1.1 -> **6.4** |
+| code x1 | 42.4 | 43.3 | +1.9% | +8.9%* | 1.9 -> 3.9 |
+| prose x1 | 25.6 | **27.6** | **+7.9%** | +9.3% raw | 0.2 -> 1.4 |
+| structured x2, aggregate | 104.6 | 109.6 | +4.6% | +13.4% raw | 0.5 -> **7.1** |
+
+\* different prompt; not like-for-like. Accept ratio identical in every cell.
+
+**The gain is real and matches her numbers.** What her table cannot show is the
+distribution: stock is tight, the fast path has a clean mode ~9% above stock and
+**about one run in four lands 15-30% below stock**:
+
+```
+structured x1   67.3 69.0 69.0 59.8 49.8 67.3 68.9 69.0     stock: 62.4-65.3
+structured x2   56.7 41.3 60.1 59.7 58.9 61.9 47.5 47.9     stock: 54.4-56.0
+```
+
+Not warm-up (dips are mid-sequence), not preemption (0), not external load
+(request counters bracketed the run), not thermal. Reported upstream as
+[#227](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/issues/227)
+with the raw runs. We left it **on**: for interactive agent sessions the median is
+what a user feels. Anything with a latency SLO should leave it off.
+
+Two traps for reproducers, both hit tonight:
+
+- The published `:exl3-instanttensor` tag (09-16) predates the patch. `FAST=1` on it
+  raises **after** the full weight load with a clear message. `BUILD=1` or `FAST=0`.
+- A plain `./start.sh restart` re-pulls the GHCR tag over a same-named local build and
+  then refreshes the worker to match — silently reverting the fast path. Use
+  `SKIP_PULL=1` until a rebuilt tag is published.
+
+Raw JSON: [`results/moe-fast-ab-20260918/`](results/moe-fast-ab-20260918/).
+Pin: [`configs/upstream-pins.md`](configs/upstream-pins.md#exl3--v16-pin-2026-09-18).
+
+---
+
 ## UPDATE (2026-09-17): EXL3 recipe v1.5 reproduces the author's decode table
 
 Upstream moved a long way since the pins below (`b5ab809` -> **`bc68f31`**, PR #202):

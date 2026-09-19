@@ -112,3 +112,18 @@ USE_HOST_NCCL=0
 
 Boot receipt to expect: `GPU KV cache size: 1,020,958 tokens, Maximum concurrency
 for 850,000 tokens per request: 1.20x` and `Available KV cache memory: 16.79 GiB`.
+
+## Deltas for the 2026-09-18 thin-decode A/B
+
+On top of the v1.5 block above:
+
+```
+GPU_MEM_UTIL=0.86                          # was 0.89; 0.89 OOM-killed the head's user session
+EXTRA_ARGS="--kv-cache-memory-bytes 15569256448"   # 14.5 GiB KV pin
+CG_ESTIMATE=0                              # return over-estimated CUDA-graph reservation to KV
+LOAD_FORMAT=instanttensor                  # this image has the wheel; empty = slow auto loader
+GLM53_EXL3_MOE_FAST=1                      # thin-decode; needs an image built from >= ca29e28
+```
+
+Both `docker run` lines in `start.sh` carry `--oom-score-adj 1000` locally so the
+engine is killed before sshd/systemd if memory runs out. Pool: 915,507 tok / 1.08x.

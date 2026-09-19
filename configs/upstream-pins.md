@@ -34,6 +34,29 @@ robustness work. The build compiles the `exllamav3` wheel and takes ~25–30 min
 Notable in this pin: `MAX_NUM_BATCHED_TOKENS` moved 1024 → 2048 (commit `c9f731f`)
 after upstream's cold-prefill ladder. We measured on 2048.
 
+## EXL3 — v1.6 pin (2026-09-18)
+
+```
+ca85576   2026-09-18
+Merge pull request #219 from MiaAI-Lab/fix/numerical-panel-evidence
+```
+
+| | |
+|---|---|
+| Image | **local `BUILD=1`** from this tree; recipe stamp `a58dae380c93…`; `exllamav3_ext.glm53_fast_moe_version() == 1`. The GHCR `:exl3-instanttensor` tag (`ef9f5013…`, 09-16) does **not** carry the thin-decode patch as of this date |
+| Weights / drafter | unchanged from v1.5 (`25a44fd` / `dc77ff1c`) |
+
+```bash
+git checkout ca85576
+BUILD=1 ./start.sh restart          # ~25-30 min; ships the image to the worker
+# every later restart, until a rebuilt tag is published:
+SKIP_PULL=1 ./start.sh restart
+```
+
+Thin-decode is opt-in: `GLM53_EXL3_MOE_FAST=1` in `.env`. It is fail-closed — on an
+image without the patch it raises at weight load rather than degrading. See the
+README's 2026-09-18 update for what it does to the run distribution.
+
 ## EXL3 — v1.5 pin (2026-09-17)
 
 The 2026-09-17 reproduction above ran on a much newer tree. Everything below was

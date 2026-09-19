@@ -64,10 +64,12 @@ are pool-constrained or run strictly single-stream. See the README and
   takes roughly 25-30 minutes.
 - **`start.sh` refuses to build while the port is held.** Use `restart`, not
   `start`, when rebuilding a live deployment.
-- **`GLM53_MIXED_PREFILL_CHUNK=skip`** is upstream's default and fine here, but the
-  same setting starved live sessions on our other stack (`Running: 1 / Waiting: 5 /
-  Deferred: 4`, generation 0.0 tok/s). Know what it does before copying it across
-  engines.
+- **`GLM53_MIXED_PREFILL_CHUNK=skip` is NOT fine for shared serving** — we said the
+  opposite here on 2026-08-31 and were wrong. It starved our own sessions on this
+  stack (`run=1 wait=1` with 85% KV free; a one-liner waiting ~190 s behind an
+  essay), exactly as it had on the other engine (`Running: 1 / Waiting: 5 /
+  Deferred: 4`). Upstream changed its default to `fair` on 2026-09-15. Use `fair`.
+  See the README's 2026-09-19 update.
 
 ## Live environment at the v1.5 reproduction (2026-09-17)
 

@@ -67,13 +67,15 @@ code x1, TP=4 after    53.5 52.6 53.8 53.0 53.7 55.2 53.4 54.0
 ```
 
 After we pulled upstream to `674155d` and restarted, every single-stream cell sits at
-sd 0.3–1.6. **We do not know why.** Four things changed together: the restart cleared 4–5 GB
-of swap per node (the engine had been up 11 hours); upstream landed 22 commits, including a
-fix for a mid-serve JIT spike on large prefills; the grouped fat-expert kernel became the
-default; and reasoning effort went from unset to `low` (irrelevant with thinking off). The
-swap explanation fits a "one stalled rank stalls all four" story, and TP=4 has four ranks
-to stall. **The test that would separate them is a repeat at about a day of uptime with swap
-sampled on every node**; we have not run it.
+sd 0.3–1.6. **We do not know why.** Four things changed together: the restart cleared the
+head node's swap, about 5 GB (the engine had been up 11 hours); upstream landed 22 commits,
+including a fix for a mid-serve JIT spike on large prefills; the grouped fat-expert kernel
+became the default; and reasoning effort went from unset to `low` (irrelevant with thinking
+off). A swap explanation remains possible **for the head only**, since rank 0 gates all four
+ranks. The workers' own 4–5 GB of swap did not change and turned out to be held by idle
+desktop daemons rather than the engine, so the workers are ruled out as a source. **The test
+that would separate the candidates is a repeat at about a day of uptime with swap sampled on
+the head, workers as a control**; we have not run it.
 
 This is relevant to the slow-run report we filed for the thin-decode kernel
 ([upstream #227](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/issues/227)):

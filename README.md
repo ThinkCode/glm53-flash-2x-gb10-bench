@@ -19,6 +19,93 @@ variable is concurrency alone.
 
 ---
 
+## UPDATE (2026-09-30): four-node TP=4 — large prose/code gain, one caveat that limits it, and a slow tail that came and went
+
+We moved the GLM-5.3-Flash EXL3 serve from two nodes to **four (TP=4)** using upstream's
+`start-tp4.sh`. Upstream lists that path as experimental and says its TP=4 performance
+"has not been measured here", so these are, as far as we know, the first numbers for it.
+Same harness as everything above (`bench_decode.py`, 400 tokens, temp 0, thinking off),
+TP=4 at 8 runs per cell. The KV pool went from **1.08x to 7.3x** a full 850k request.
+
+![Every run: TP=2 vs TP=4, before and after the update](charts/exl3-tp4-vs-tp2-runs.svg)
+
+| cell (tok/s, median) | TP=2 stock, k=7 | TP=4 before update | TP=4 after update | after vs TP=2 |
+|---|---:|---:|---:|---:|
+| prose x1 | 25.6 | 41.5 | **43.1** | **+68%** |
+| code x1 | 42.4 | 53.0 | **53.6** | **+26%** |
+| structured x1 | 63.1 | 57.3 | **61.6** | −2% |
+| structured x2, aggregate | 104.6 | 92.8 | **98.2** | −6% |
+| structured x4, aggregate | 165.4* | 151.4 | **152.3** | −8% |
+
+\* older, matched-config-unfriendly baseline (5 runs, 09-17 recipe). TP=2 stock rows are
+the `FAST=0` arm from the 09-18 update above.
+
+**Why the shape.** The step gets much cheaper (about 125 ms to 65 ms on prose) but TP=4
+runs the drafter at **k=3** instead of k=7, so each step verifies fewer tokens. Prose and
+code accept only about 2 tokens per step whatever k is, so k=7's extra drafts were wasted
+and the cheaper step turns almost directly into speed. Structured output accepts 0.96+,
+so k=7 was banking 6.7 tokens per step and k=3 caps near 3; the faster step only just
+makes that up. Agent traffic is the prose/code regime; a counting benchmark is the worst
+case for TP=4.
+
+> **Topology and k are confounded, and no run here separates them.** Every TP=2 number is
+> at k=7 and every TP=4 number is at k=3. Our earlier NVFP4 work found k=3 alone worth
+> +87% under concurrency, so a large share of the prose gain may be k, not four nodes.
+> The two missing cells are **TP=2 at k=3** and **TP=4 at k=7**. Do not read this table
+> as "+68% from TP=4". The TP=2 rows are also from the older recipe and different memory
+> settings.
+
+### A slow tail, then no tail
+
+Before the update, TP=4 showed a wide spread (standard deviation 7–9 tok/s against 0.2–1.9
+on the TP=2 stock arm), with the slow runs **clustered in consecutive runs** rather than
+scattered:
+
+```
+code x1, TP=4 before   53.5 52.5 54.3 53.7 36.5 32.6 42.3 54.6
+code x1, TP=4 after    53.5 52.6 53.8 53.0 53.7 55.2 53.4 54.0
+```
+
+After we pulled upstream to `674155d` and restarted, every single-stream cell sits at
+sd 0.3–1.6. **We do not know why.** Four things changed together: the restart cleared 4–6 GB
+of swap per node (the engine had been up 11 hours); upstream landed 22 commits, including a
+fix for a mid-serve JIT spike on large prefills; the grouped fat-expert kernel became the
+default; and reasoning effort went from unset to `low` (irrelevant with thinking off). The
+swap explanation fits a "one stalled rank stalls all four" story, and TP=4 has four ranks
+to stall. **The test that would separate them is a repeat at about a day of uptime with swap
+sampled on every node**; we have not run it.
+
+This is relevant to the slow-run report we filed for the thin-decode kernel
+([upstream #227](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks/issues/227)):
+TP=4 had **no** thin-decode kernel and still showed a tail, so a tail is not unique to that
+kernel. That does not resolve #227, and the tail's absence after a restart says a tail can
+also depend on how long the engine has been up.
+
+### If you reproduce TP=4, four things bit us
+
+- **`nofile` ulimit.** Docker's default of 1024 is exhausted at rendezvous by ~120 shards
+  times a four-rank socket mesh (`Too many open files`). Add `--ulimit nofile=1048576:1048576`
+  to the container launches. Upstream's launcher does not, as of `674155d`.
+- **InstantTensor's static buffer** (1.2 GB) exceeds the per-rank device budget at TP=4.
+  Set `LOAD_FORMAT=` (empty) and `GLM53_LOAD_CLONE=1` to use the standard loader.
+- **Reasoning effort was silently ignored.** `start-tp4.sh` did not honour
+  `GLM53_DEFAULT_REASONING_EFFORT` until upstream commit `4709bc5`, so a `.env` setting of
+  `low` did nothing and requests ran at the template's Max effort. Check the engine's launch
+  arguments for `default_chat_template_kwargs` rather than trusting the env file.
+- **`restart` is `stop; start`**, and `start` runs a memory preflight, so a build or image
+  ship can't overlap with the running engine through the launcher. Doing the build and the
+  three 21 GB ships by hand first (they don't need the engine down) turned a ~45 minute
+  outage into **11 minutes**; over an idle second RoCE rail each ship took about 2m15s.
+
+Also: the two node types we mixed use **different RoCE GID indices**, so set them per rank
+(`show_gids` on each), and we run `--oom-score-adj 1000` on the containers so the engine is
+the thing the kernel kills first (see [`configs/tp4-local-patches.diff`](configs/tp4-local-patches.diff)).
+Config: [`configs/exl3.md`](configs/exl3.md#2026-09-30-four-node-tp4). Pin:
+[`configs/upstream-pins.md`](configs/upstream-pins.md#exl3--tp4-pin-2026-09-30).
+Raw JSON: [`results/tp4-20260930/`](results/tp4-20260930/).
+
+---
+
 ## UPDATE (2026-09-19): if simple requests "wait", check `GLM53_MIXED_PREFILL_CHUNK` before the engine
 
 We'd been carrying `GLM53_MIXED_PREFILL_CHUNK=skip` from the pre-09-15 default

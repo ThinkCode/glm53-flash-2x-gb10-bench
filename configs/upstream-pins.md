@@ -34,6 +34,32 @@ robustness work. The build compiles the `exllamav3` wheel and takes ~25–30 min
 Notable in this pin: `MAX_NUM_BATCHED_TOKENS` moved 1024 → 2048 (commit `c9f731f`)
 after upstream's cold-prefill ladder. We measured on 2048.
 
+## EXL3 — TP4 pin (2026-09-30)
+
+```
+674155d   2026-09-30
+Merge pull request #305 from MiaAI-Lab/docs/readme-refresh
+```
+
+41 commits (22 non-merge) past the v1.6 pin below, including the TP=4 reasoning-effort fix
+(`4709bc5`, `5db4f02`), the mid-serve JIT spike fix (`77ef2f3`), fair-prefill candidate
+priority (`9dbd687`), and `start-tp4.sh` defaulting `EXL3_FAT_GROUPED=1` (`e5dc885`).
+
+| | |
+|---|---|
+| Image | **local build** from this tree. Recipe stamp `d95b0bb10e18…`, image id `d7b3dc75882b…`. The GHCR `:exl3-instanttensor` tag (`ef9f5013…`, 09-16) predates the Dockerfile changes in this range |
+| Weights | `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw` @ `25a44fdbf16862a46b7cc9921142c6c81350af2f` (the two later Hub commits are README-only) |
+| Drafter | `incoai/GLM-5.3-Flash-DFlash2` @ `dc77ff1c99eeb2df044ee3d4f0094eb033fee410`. Newer Hub checkpoint `bf582e4e` exists; upstream deliberately pins `dc77ff1c` ("mutable Hub main drifts weights"), so we match the recipe |
+
+```bash
+git checkout 674155d
+cp .env.tp4.example .env.tp4      # set rank IPs, per-rank RoCE pins and GID indices
+git apply /path/to/configs/tp4-local-patches.diff   # nofile + oom-score-adj; upstream has neither
+SKIP_PULL=1 ./start-tp4.sh restart
+```
+
+Keep `SKIP_PULL=1` on every restart while the published tag is older than your local build.
+
 ## EXL3 — v1.6 pin (2026-09-18)
 
 ```

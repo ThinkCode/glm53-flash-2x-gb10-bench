@@ -137,3 +137,39 @@ while another is decoding, with no deferral cap; on a shared endpoint that is a
 multi-minute freeze for one-line prompts. `fair` v5 (upstream default since
 2026-09-15) gives a newcomer its first token in ~12-17 s while the incumbent keeps
 streaming. Bind-mounted overlay, no rebuild; restart required.
+
+## 2026-09-30: four-node TP4
+
+Values are the non-network parts of `.env.tp4` plus the shared `.env` keys that matter.
+Rank addresses, RoCE interface pins and GID indices are per-kit; set your own.
+
+```
+TP=4
+NNODES=4
+DFLASH_TOKENS=3                  # k=3, not 7 (confounded with topology; see README 2026-09-30)
+DFLASH_DRAFT_TP=4
+GPU_MEM_UTIL=0.78
+MAX_MODEL_LEN=850000
+MAX_NUM_SEQS=4
+MAX_NUM_BATCHED_TOKENS=2048
+LOAD_FORMAT=                     # empty: InstantTensor's 1.2 GB buffer exceeds the per-rank budget at TP=4
+GLM53_LOAD_CLONE=1
+GLM53_LOAD_PREFETCH=0
+GLM53_MIXED_PREFILL_CHUNK=fair   # skip starves newcomers; see README 2026-09-19
+GLM53_FAIR_PREFILL_CHUNK=256
+GLM53_FAIR_PREFILL_SHARE=0.30
+GLM53_FAIR_PREFILL_MAX_INTERVAL_MS=2000
+GLM53_FAIR_PREFILL_MAX_STEP_MS=2000
+GLM53_FAIR_PREFILL_MAX_CHUNKS=1
+GLM53_APC_RETENTION_INTERVAL_SWA=0
+VLLM_SM120_SPARSE_MLA_SLICE_TOKENS=64
+NCCL_CROSS_NIC=1
+GLM53_DEFAULT_REASONING_EFFORT=low   # only honoured by start-tp4.sh from upstream 4709bc5 on
+GLM53_ADAPTIVE_K=off                 # new TP4 opt-in; unmeasured here
+# GLM53_EXL3_MOE_FAST is TP=2 only; not set
+# EXL3_FAT_GROUPED=1 and EXL3_TEMP_ROWS_FUSED=32 are the launcher defaults at 674155d
+```
+
+Boot receipt: `GPU KV cache size: 6,197,637 tokens, Maximum concurrency for 850,000
+tokens per request: 7.29x`; health after ~520 s; post-ready shape warmup 24/24 in 46 s.
+Container flags we add: `--oom-score-adj 1000`, `--ulimit nofile=1048576:1048576`.

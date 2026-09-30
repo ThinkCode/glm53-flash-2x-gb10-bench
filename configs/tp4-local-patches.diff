@@ -1,0 +1,52 @@
+diff --git a/start-tp4.sh b/start-tp4.sh
+index e4f4559..61f790c 100755
+--- a/start-tp4.sh
++++ b/start-tp4.sh
+@@ -1910,10 +1910,10 @@ TP4_SKIP_OLD_SCP
+         fi
+         cname="$(_tp4_rank_container "$r")"
+         log "starting rank ${r} on $(_tp4_ssh_target "$r") (NCCL if=$(_tp4_rank_cx7_if "$r") hca=$(_tp4_rank_cx7_ib "$r")) ..."
+-        worker_ssh_n "$r" "docker run -d --name '$cname' \
++        worker_ssh_n "$r" "docker run -d --oom-score-adj 1000 --name '$cname' \
+             --gpus all --network host --ipc=host --shm-size 32g --stop-timeout 60 \
+             --device /dev/infiniband --cap-add IPC_LOCK \
+-            --ulimit memlock=-1 --ulimit stack=67108864 \
++            --ulimit memlock=-1 --ulimit stack=67108864 --ulimit nofile=1048576:1048576 \
+             -v '$(_tp4_rank_hf "$r"):/root/.cache/huggingface' \
+             -v '$(_tp4_rank_vllm "$r"):/root/.cache/vllm' \
+             -v '$(_tp4_rank_triton "$r"):/root/.triton/cache' \
+@@ -1951,10 +1951,10 @@ TP4_SKIP_OLD_SCP
+     done
+ 
+     log "starting head (vLLM API :${PORT}; NCCL if=${HEAD_CX7_IF} hca=${HEAD_CX7_IB}) ..."
+-    docker run -d --name "$CONTAINER_HEAD" \
++    docker run -d --oom-score-adj 1000 --name "$CONTAINER_HEAD" \
+         --gpus all --network host --ipc=host --shm-size 32g --stop-timeout 60 \
+         --device /dev/infiniband --cap-add IPC_LOCK \
+-        --ulimit memlock=-1 --ulimit stack=67108864 \
++        --ulimit memlock=-1 --ulimit stack=67108864 --ulimit nofile=1048576:1048576 \
+         -v "$HF_CACHE_DIR:/root/.cache/huggingface" \
+         -v "$CACHE_ROOT:/root/.cache/vllm" \
+         -v "$TRITON_HOST_CACHE:/root/.triton/cache" \
+diff --git a/start.sh b/start.sh
+index 95f02b3..aedd92f 100755
+--- a/start.sh
++++ b/start.sh
+@@ -2639,7 +2639,7 @@ launch_cluster() {
+     # credential into its remote docker command or container environment.
+ 
+     log "starting worker on ${WORKER_SSH} (NCCL if=${WORKER_CX7_IF} hca=${WORKER_CX7_IB}) ..."
+-    worker_ssh "docker run -d --name '$CONTAINER_WORKER' \
++    worker_ssh "docker run -d --oom-score-adj 1000 --name '$CONTAINER_WORKER' \
+         --gpus all --network host --ipc=host --shm-size 32g --stop-timeout 60 \
+         --device /dev/infiniband --cap-add IPC_LOCK \
+         --ulimit memlock=-1 --ulimit stack=67108864 \
+@@ -2689,7 +2689,7 @@ launch_cluster() {
+         --entrypoint bash '$IMAGE' /start.sh" >/dev/null
+ 
+     log "starting head (vLLM API :${PORT}; NCCL if=${HEAD_CX7_IF} hca=${HEAD_CX7_IB}) ..."
+-    VLLM_API_KEY="$VLLM_API_KEY" docker run -d --name "$CONTAINER_HEAD" \
++    VLLM_API_KEY="$VLLM_API_KEY" docker run -d --oom-score-adj 1000 --name "$CONTAINER_HEAD" \
+         --gpus all --network host --ipc=host --shm-size 32g --stop-timeout 60 \
+         --device /dev/infiniband --cap-add IPC_LOCK \
+         --ulimit memlock=-1 --ulimit stack=67108864 \

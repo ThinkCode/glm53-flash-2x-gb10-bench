@@ -167,7 +167,8 @@ NCCL_CROSS_NIC=1
 GLM53_DEFAULT_REASONING_EFFORT=low   # only honoured by start-tp4.sh from upstream 4709bc5 on
 GLM53_ADAPTIVE_K=off                 # new TP4 opt-in; unmeasured here
 # GLM53_EXL3_MOE_FAST is TP=2 only; not set
-# EXL3_FAT_GROUPED=1 and EXL3_TEMP_ROWS_FUSED=32 are the launcher defaults at 674155d
+# EXL3_FAT_GROUPED=1 with EXL3_TEMP_ROWS_FUSED=32 is what the launcher set on our ranks at 674155d
+# (upstream commit e5dc885 changed the default; we did not set either ourselves)
 ```
 
 Boot receipt: `GPU KV cache size: 6,197,637 tokens, Maximum concurrency for 850,000

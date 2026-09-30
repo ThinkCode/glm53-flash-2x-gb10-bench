@@ -22,10 +22,10 @@ variable is concurrency alone.
 ## UPDATE (2026-09-30): four-node TP=4 — large prose/code gain, one caveat that limits it, and a slow tail that came and went
 
 We moved the GLM-5.3-Flash EXL3 serve from two nodes to **four (TP=4)** using upstream's
-`start-tp4.sh`. Upstream lists that path as experimental and says its TP=4 performance
-"has not been measured here", so these are, as far as we know, the first numbers for it.
-Same harness as everything above (`bench_decode.py`, 400 tokens, temp 0, thinking off),
-TP=4 at 8 runs per cell. The KV pool went from **1.08x to 7.3x** a full 850k request.
+`start-tp4.sh`. Upstream lists that path as experimental and community-tested, and its docs
+say TP=2 gains from its opt-in features do not establish TP=4 gains; we found no published
+TP=4 decode numbers, so these may be the first. Same harness as everything above (`bench_decode.py`, 400 tokens, temp 0, thinking off),
+TP=4 at 8 runs per cell. The KV pool went from about **1.1-1.2x to 7.3x** a full 850k request.
 
 ![Every run: TP=2 vs TP=4, before and after the update](charts/exl3-tp4-vs-tp2-runs.svg)
 
@@ -37,7 +37,7 @@ TP=4 at 8 runs per cell. The KV pool went from **1.08x to 7.3x** a full 850k req
 | structured x2, aggregate | 104.6 | 92.8 | **98.2** | −6% |
 | structured x4, aggregate | 165.4* | 151.4 | **152.3** | −8% |
 
-\* older, matched-config-unfriendly baseline (5 runs, 09-17 recipe). TP=2 stock rows are
+\* an older baseline (5 runs, 09-17 recipe), not a matched arm. The other TP=2 numbers are
 the `FAST=0` arm from the 09-18 update above.
 
 **Why the shape.** The step gets much cheaper (about 125 ms to 65 ms on prose) but TP=4
@@ -67,7 +67,7 @@ code x1, TP=4 after    53.5 52.6 53.8 53.0 53.7 55.2 53.4 54.0
 ```
 
 After we pulled upstream to `674155d` and restarted, every single-stream cell sits at
-sd 0.3–1.6. **We do not know why.** Four things changed together: the restart cleared 4–6 GB
+sd 0.3–1.6. **We do not know why.** Four things changed together: the restart cleared 4–5 GB
 of swap per node (the engine had been up 11 hours); upstream landed 22 commits, including a
 fix for a mid-serve JIT spike on large prefills; the grouped fat-expert kernel became the
 default; and reasoning effort went from unset to `low` (irrelevant with thinking off). The

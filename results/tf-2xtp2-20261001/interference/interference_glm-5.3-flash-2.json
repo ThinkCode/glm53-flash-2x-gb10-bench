@@ -1,0 +1,22 @@
+[
+ {
+  "scenario": "A: short newcomer ('What is 17*23?')",
+  "newcomer_ttft_s": 0.2,
+  "newcomer_total_s": 0.26,
+  "incumbent_rate_before": 23.0,
+  "incumbent_rate_during": 11.7,
+  "incumbent_worst_2s_window": 21.5,
+  "incumbent_longest_gap_s": 0.19,
+  "incumbent_kept_pct": 51.0
+ },
+ {
+  "scenario": "B: cold ~32k-token newcomer",
+  "newcomer_ttft_s": 22.61,
+  "newcomer_total_s": 22.69,
+  "incumbent_rate_before": 22.8,
+  "incumbent_rate_during": 1.5,
+  "incumbent_worst_2s_window": 0.5,
+  "incumbent_longest_gap_s": 1.52,
+  "incumbent_kept_pct": 7.0
+ }
+]

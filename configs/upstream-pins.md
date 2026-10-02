@@ -167,3 +167,17 @@ it is not.
 
 HuggingFace repos are mutable. If you need byte-exact reproduction, pin the model
 revisions too — `MODEL_REVISION` in the EXL3 env, and `--revision` for vLLM.
+
+## TensorFold — MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold
+
+```
+92bf731c3aac61927726ef0c422b21b42111f2c4   v1.3.2   (2026-09-29)
+```
+
+The repo was two days old and shipped three releases in that time; keep the pin.
+Engine image `tensorfold-glm53:v0.6.0` (`tf.patches=ae8d1c789b47`, GHCR digest
+`sha256:22789f0cb3dc308f0b2ce52a33961b88bd624af1725e91e8aba0a74a671bb969`).
+Checkpoint `Mia-AiLab/GLM-5.3-Flash-EXL3-TR3-4bpw @ 9eaebb7c4e96d983dcd538e18624622ba5b820a8`,
+drafter `incoai/GLM-5.3-Flash-DFlash2 @ bf582e4eacc1810f76656d1811693ff6c6737d2a`.
+Run its scripts with `LC_ALL=C` (upstream issue #21). Our only local change to the recipe is
+[`tensorfold-local-patches.diff`](tensorfold-local-patches.diff).

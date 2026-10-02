@@ -1,0 +1,952 @@
+{
+  "phase": "prose",
+  "health_code": 200,
+  "health_body": "{\"ok\": true, \"backend\": \"tensorfold\", \"busy\": false, \"requests_running\": 0, \"requests_total\": 109, \"prompt_tokens_total\": 84516, \"completion_tokens_total\": 30846, \"prefill_seconds_total\": 45.2929, \"decode_seconds_total\": 396.7688, \"cached_tokens_total\": 48128, \"rounds_total\": 5977, \"drafted_total\": 27884, \"accepted_total\": 24760, \"streams\": {\"decoding\": 0, \"prefilling\": 0, \"max\": 4, \"filling\": 0, \"paused\": 0}, \"pool_tokens\": 2177024, \"pool_free_tokens\": 2142208, \"kept_prompts\": 9, \"multi_prefill\": {\"chunks\": 19, \"pieces\": 45, \"rows\": 1275}, \"context_length\": 1048576}",
+  "runs": [
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.24738006410188973,
+          "wall_s": 7.6070118001662195,
+          "decode_s": 7.35963173606433,
+          "tok_s": 54.21466919938185,
+          "delivered_tok_s": 52.58306553320447,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24697593390010297,
+          "wall_s": 7.6070366320200264,
+          "decode_s": 7.3600606981199235,
+          "tok_s": 54.21150943794822,
+          "delivered_tok_s": 52.58289388489262,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24658933910541236,
+          "wall_s": 7.606874549994245,
+          "decode_s": 7.360285210888833,
+          "tok_s": 54.20985580962514,
+          "delivered_tok_s": 52.58401428485535,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 7.609023890923709,
+      "tok_s": 54.21150943794822,
+      "ttft_s": 0.24697593390010297,
+      "decode_s": 7.3600606981199235,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 157.7074822213923,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.24880586401559412,
+          "wall_s": 7.60029225400649,
+          "decode_s": 7.351486389990896,
+          "tok_s": 54.27473830914541,
+          "delivered_tok_s": 52.629555105481664,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24899938609451056,
+          "wall_s": 7.599748970940709,
+          "decode_s": 7.350749584846199,
+          "tok_s": 54.280178557918916,
+          "delivered_tok_s": 52.63331743317929,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24791769916191697,
+          "wall_s": 7.599735514027998,
+          "decode_s": 7.351817814866081,
+          "tok_s": 54.27229156756084,
+          "delivered_tok_s": 52.63341063141719,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 7.600969202816486,
+      "tok_s": 54.27473830914541,
+      "ttft_s": 0.24880586401559412,
+      "decode_s": 7.351486389990896,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 157.87460361704245,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.24954485800117254,
+          "wall_s": 7.578427609056234,
+          "decode_s": 7.328882751055062,
+          "tok_s": 54.44213170725922,
+          "delivered_tok_s": 52.78139749227126,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24996268399991095,
+          "wall_s": 7.577817989047617,
+          "decode_s": 7.327855305047706,
+          "tok_s": 54.44976509363573,
+          "delivered_tok_s": 52.78564364809614,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.25040292693302035,
+          "wall_s": 7.57809173502028,
+          "decode_s": 7.3276888080872595,
+          "tok_s": 54.451002280506316,
+          "delivered_tok_s": 52.783736854424546,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 7.579304238082841,
+      "tok_s": 54.44976509363573,
+      "ttft_s": 0.24996268399991095,
+      "decode_s": 7.327855305047706,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 158.32587824757064,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.17280117003247142,
+          "wall_s": 9.771278821164742,
+          "decode_s": 9.59847765113227,
+          "tok_s": 41.56909194375553,
+          "delivered_tok_s": 40.93629987649045,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.44127420196309686,
+          "wall_s": 9.836739000864327,
+          "decode_s": 9.39546479890123,
+          "tok_s": 42.467297631370165,
+          "delivered_tok_s": 40.66388261037048,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.4414451161865145,
+          "wall_s": 9.836777850054204,
+          "decode_s": 9.39533273386769,
+          "tok_s": 42.467894570855435,
+          "delivered_tok_s": 40.663722013178926,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 9.837521293899044,
+      "tok_s": 42.467297631370165,
+      "ttft_s": 0.44127420196309686,
+      "decode_s": 9.39546479890123,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 121.98194688983357,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.44254846405237913,
+          "wall_s": 9.847559873014688,
+          "decode_s": 9.40501140896231,
+          "tok_s": 42.42419096055336,
+          "delivered_tok_s": 40.61919959442153,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2343021729029715,
+          "wall_s": 9.784954270115122,
+          "decode_s": 9.55065209721215,
+          "tok_s": 41.77725205972781,
+          "delivered_tok_s": 40.87908731690924,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2339964429847896,
+          "wall_s": 9.785071214893833,
+          "decode_s": 9.551074771909043,
+          "tok_s": 41.775403242942986,
+          "delivered_tok_s": 40.87859875676336,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 9.84834109293297,
+      "tok_s": 41.77725205972781,
+      "ttft_s": 0.2343021729029715,
+      "decode_s": 9.55065209721215,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 121.84793242601062,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.24843119899742305,
+          "wall_s": 7.587556212907657,
+          "decode_s": 7.339125013910234,
+          "tok_s": 54.36615390032927,
+          "delivered_tok_s": 52.7178960888007,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24848147202283144,
+          "wall_s": 7.587167138932273,
+          "decode_s": 7.338685666909441,
+          "tok_s": 54.36940865298457,
+          "delivered_tok_s": 52.72059949061452,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2486680969595909,
+          "wall_s": 7.586507519008592,
+          "decode_s": 7.337839422049001,
+          "tok_s": 54.37567886823342,
+          "delivered_tok_s": 52.725183359769765,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 7.58848045906052,
+      "tok_s": 54.36940865298457,
+      "ttft_s": 0.24848147202283144,
+      "decode_s": 7.338685666909441,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 158.13442578839613,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.2495905349496752,
+          "wall_s": 7.598878955002874,
+          "decode_s": 7.349288420053199,
+          "tok_s": 54.290970389907734,
+          "delivered_tok_s": 52.63934356220426,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24674855009652674,
+          "wall_s": 7.598475927952677,
+          "decode_s": 7.35172737785615,
+          "tok_s": 54.27295919620364,
+          "delivered_tok_s": 52.64213557991431,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.2470113190356642,
+          "wall_s": 7.598476600134745,
+          "decode_s": 7.351465281099081,
+          "tok_s": 54.27489415284941,
+          "delivered_tok_s": 52.64213092304669,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 7.599567326949909,
+      "tok_s": 54.27489415284941,
+      "ttft_s": 0.2470113190356642,
+      "decode_s": 7.351465281099081,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 157.90372640617431,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "concurrency": 3,
+      "parts": [
+        {
+          "http": 200,
+          "ttft_s": 0.24604462389834225,
+          "wall_s": 7.59056525491178,
+          "decode_s": 7.344520631013438,
+          "tok_s": 54.32621406428587,
+          "delivered_tok_s": 52.69699772901154,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24552767700515687,
+          "wall_s": 7.590250373119488,
+          "decode_s": 7.3447226961143315,
+          "tok_s": 54.32471946300816,
+          "delivered_tok_s": 52.699183865736636,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        },
+        {
+          "http": 200,
+          "ttft_s": 0.24574434920214117,
+          "wall_s": 7.58991550700739,
+          "decode_s": 7.344171157805249,
+          "tok_s": 54.328799183274775,
+          "delivered_tok_s": 52.70150894706271,
+          "completion_tokens": 400,
+          "prompt_tokens": 33,
+          "finish_reason": "length",
+          "nan": false,
+          "text_head": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated valu",
+          "text": "# How a Hash Map Works: A Complete Guide\n\nA hash map (also called a hash table or dictionary) is a data structure that stores key-value pairs and provides fast lookup, insertion, and deletion. Let's build up our understanding from the ground up.\n\n---\n\n## 1. The Core Concept\n\nA hash map stores data as **key-value pairs**. You provide a key (e.g., a username), and the map returns the associated value (e.g., the user's profile). The magic is that lookup is nearly instantaneous, regardless of how many items are stored.\n\nThe central challenge: how do you find a value instantly without searching? The answer is to **compute the storage location directly from the key**.\n\n---\n\n## 2. The Components\n\nA hash map consists of:\n\n1. **An array (the \"buckets\")** \u2014 the underlying storage. Each slot in this array is called a *bucket* or *slot*.\n2. **A hash function** \u2014 converts a key into an array index.\n3. **Entries** \u2014 the key-value pairs stored in the buckets.\n\n```\nIndex:    0        1        2        3        4\n        \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510   \u250c\u2500\u2500\u2500\u2500\u2510\n        \u2502    \u2502   \u2502    \u2502   \u2502(\"amy\", 25)\u2502  \u2502    \u2502\n        \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518   \u2514\u2500\u2500\u2500\u2500\u2518\n```\n\n---\n\n## 3. The Hash Function\n\nA hash function takes a key of any type (string, number, object) and converts it into an integer, which is then mapped to a valid array index.\n\n### Step-by-step example\n\nSuppose we want to store `(\"amy\", 25)` in an array of size 8.\n\n**",
+          "text_len": 1432,
+          "usage": {
+            "prompt_tokens": 33,
+            "completion_tokens": 400,
+            "total_tokens": 433,
+            "prompt_tokens_details": {
+              "cached_tokens": 0
+            },
+            "completion_tokens_details": {
+              "reasoning_tokens": 0
+            }
+          }
+        }
+      ],
+      "wall_s": 7.591177449794486,
+      "tok_s": 54.32621406428587,
+      "ttft_s": 0.24574434920214117,
+      "decode_s": 7.344520631013438,
+      "completion_tokens": 1200,
+      "aggregate_tok_s": 158.07824384772974,
+      "finish_reason": [
+        "length",
+        "length",
+        "length"
+      ],
+      "nan": false,
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "ts": 1790908014.782524,
+  "prompt": "hashmap-prose",
+  "thinking": false,
+  "temperature": 0,
+  "concurrency": 3,
+  "note": "decode_ms_per_draft_step is a serving-cycle ratio, not a kernel timing",
+  "warmup": {
+    "tok_s": 73.38370228096174,
+    "ttft_s": 0.17541979788802564,
+    "completion_tokens": 32
+  },
+  "tok_s_median": 54.274816230997416,
+  "tok_s_min": 41.77725205972781,
+  "tok_s_max": 54.44976509363573,
+  "ttft_median_s": 0.24774639552924782,
+  "completion_tokens_median": 1200.0,
+  "accept_ratio_median": null,
+  "accepted_per_step_median": null,
+  "mean_draft_tokens_per_step_median": null,
+  "aggregate_tok_s_median": 157.88916501160838,
+  "decode_ms_per_draft_step_median": null,
+  "any_nan": false,
+  "health_code_after": 200,
+  "short_after": {
+    "http": 200,
+    "ttft_s": 0.1744077350012958,
+    "wall_s": 0.2788553449790925,
+    "decode_s": 0.10444760997779667,
+    "tok_s": 67.01924535648111,
+    "delivered_tok_s": 28.688709555127264,
+    "completion_tokens": 8,
+    "prompt_tokens": 33,
+    "finish_reason": "length",
+    "nan": false,
+    "text_head": "# How a Hash Map Works: A",
+    "text": "# How a Hash Map Works: A",
+    "text_len": 25,
+    "usage": {
+      "prompt_tokens": 33,
+      "completion_tokens": 8,
+      "total_tokens": 41,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    }
+  }
+}

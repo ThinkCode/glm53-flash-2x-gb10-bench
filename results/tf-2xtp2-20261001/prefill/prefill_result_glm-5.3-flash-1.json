@@ -1,0 +1,81 @@
+[
+ {
+  "label": "cold 8192",
+  "prompt_tokens": 8239,
+  "ttft_s": 4.636,
+  "total_s": 4.681,
+  "prefill_tok_s": 1777.3,
+  "cached_tokens": 0
+ },
+ {
+  "label": "cold 16384",
+  "prompt_tokens": 16454,
+  "ttft_s": 9.109,
+  "total_s": 9.154,
+  "prefill_tok_s": 1806.4,
+  "cached_tokens": 0
+ },
+ {
+  "label": "cold 32768",
+  "prompt_tokens": 32746,
+  "ttft_s": 17.638,
+  "total_s": 17.683,
+  "prefill_tok_s": 1856.5,
+  "cached_tokens": 0
+ },
+ {
+  "label": "identical resend 32768",
+  "prompt_tokens": 32746,
+  "ttft_s": 0.202,
+  "total_s": 0.247,
+  "prefill_tok_s": 162305.7,
+  "cached_tokens": 32704
+ },
+ {
+  "label": "cold 65536",
+  "prompt_tokens": 65417,
+  "ttft_s": 36.033,
+  "total_s": 36.079,
+  "prefill_tok_s": 1815.5,
+  "cached_tokens": 0
+ },
+ {
+  "label": "identical resend 65536",
+  "prompt_tokens": 65417,
+  "ttft_s": 0.197,
+  "total_s": 0.241,
+  "prefill_tok_s": 332851.5,
+  "cached_tokens": 65408
+ },
+ {
+  "label": "cold 131072",
+  "prompt_tokens": 131062,
+  "ttft_s": 76.736,
+  "total_s": 76.782,
+  "prefill_tok_s": 1708.0,
+  "cached_tokens": 0
+ },
+ {
+  "label": "cold 262144",
+  "prompt_tokens": 261941,
+  "ttft_s": 172.15,
+  "total_s": 172.199,
+  "prefill_tok_s": 1521.6,
+  "cached_tokens": 0
+ },
+ {
+  "label": "shared 7.9k system prompt, user: What is 2+2?",
+  "prompt_tokens": 7888,
+  "ttft_s": 4.296
+ },
+ {
+  "label": "shared 7.9k system prompt, user: Name a prime number.",
+  "prompt_tokens": 7886,
+  "ttft_s": 0.138
+ },
+ {
+  "label": "shared 7.9k system prompt, user: Say hello in French.",
+  "prompt_tokens": 7886,
+  "ttft_s": 0.137
+ }
+]

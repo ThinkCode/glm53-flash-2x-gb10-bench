@@ -1,0 +1,400 @@
+{
+  "phase": "code",
+  "health_code": 200,
+  "health_body": "{\"ok\": true, \"backend\": \"tensorfold\", \"busy\": false, \"requests_running\": 0, \"requests_total\": 202, \"prompt_tokens_total\": 81043, \"completion_tokens_total\": 65318, \"prefill_seconds_total\": 66.2154, \"decode_seconds_total\": 997.1837, \"cached_tokens_total\": 41216, \"rounds_total\": 14622, \"drafted_total\": 59393, \"accepted_total\": 50494, \"streams\": {\"decoding\": 0, \"prefilling\": 0, \"max\": 4, \"filling\": 0, \"paused\": 0}, \"pool_tokens\": 1728512, \"pool_free_tokens\": 1689600, \"kept_prompts\": 11, \"multi_prefill\": {\"chunks\": 43, \"pieces\": 123, \"rows\": 3717}, \"context_length\": 1048576}",
+  "runs": [
+    {
+      "http": 200,
+      "ttft_s": 0.19746300298720598,
+      "wall_s": 2.3513574770186096,
+      "decode_s": 2.1538944740314037,
+      "tok_s": 77.06969956114003,
+      "delivered_tok_s": 71.022803479353,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.19881873787380755,
+      "wall_s": 2.353704173816368,
+      "decode_s": 2.1548854359425604,
+      "tok_s": 77.03425770632236,
+      "delivered_tok_s": 70.95199212279132,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.19772577215917408,
+      "wall_s": 2.3497862310614437,
+      "decode_s": 2.1520604589022696,
+      "tok_s": 77.13537940503487,
+      "delivered_tok_s": 71.07029473253951,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.1999571300111711,
+      "wall_s": 2.359368125209585,
+      "decode_s": 2.1594109951984137,
+      "tok_s": 76.87281410028542,
+      "delivered_tok_s": 70.78166319855883,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.1973504100460559,
+      "wall_s": 2.3432249440811574,
+      "decode_s": 2.1458745340351015,
+      "tok_s": 77.35773800710224,
+      "delivered_tok_s": 71.26929935678253,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.19926722114905715,
+      "wall_s": 2.352088258136064,
+      "decode_s": 2.1528210369870067,
+      "tok_s": 77.1081279623346,
+      "delivered_tok_s": 71.00073707792787,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.19767164392396808,
+      "wall_s": 2.337149771861732,
+      "decode_s": 2.139478127937764,
+      "tok_s": 77.58901473791035,
+      "delivered_tok_s": 71.45455631924297,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    },
+    {
+      "http": 200,
+      "ttft_s": 0.1982615680899471,
+      "wall_s": 2.3421679120510817,
+      "decode_s": 2.1439063439611346,
+      "tok_s": 77.4287554433438,
+      "delivered_tok_s": 71.30146354611907,
+      "completion_tokens": 167,
+      "prompt_tokens": 42,
+      "finish_reason": "stop",
+      "nan": false,
+      "text_head": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a lis",
+      "text": "```python\ndef clamp_range(values):\n    \"\"\"Return a new list with each int clamped to the range [0, 50].\n\n    Args:\n        values: A list of ints.\n\n    Returns:\n        A new list where each element is min(max(v, 0), 50).\n    \"\"\"\n    return [min(max(v, 0), 50) for v in values]\n```\n\nExample usage:\n\n```python\nprint(clamp_range([-10, 0, 25, 50, 75]))  # [0, 0, 25, 50, 50]\n```\n\nThe function uses a list comprehension with `max(v, 0)` to enforce the lower bound and `min(..., 50)` to enforce the upper bound, leaving the original list unmodified.",
+      "text_len": 544,
+      "usage": {
+        "prompt_tokens": 42,
+        "completion_tokens": 167,
+        "total_tokens": 209,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      },
+      "spec": {
+        "drafts": 0,
+        "draft_tokens": 0,
+        "accepted": 0,
+        "accept_ratio": null,
+        "accepted_per_step": null,
+        "mean_draft_tokens_per_step": null,
+        "pos": [
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ],
+  "ts": 1790908611.7493324,
+  "prompt": "coding-clamp-range",
+  "thinking": false,
+  "temperature": 0,
+  "concurrency": 1,
+  "note": "decode_ms_per_draft_step is a serving-cycle ratio, not a kernel timing",
+  "warmup": {
+    "tok_s": 90.81156493011197,
+    "ttft_s": 0.19960821606218815,
+    "completion_tokens": 32
+  },
+  "tok_s_median": 77.12175368368474,
+  "tok_s_min": 76.87281410028542,
+  "tok_s_max": 77.58901473791035,
+  "ttft_median_s": 0.1979936701245606,
+  "completion_tokens_median": 167.0,
+  "accept_ratio_median": null,
+  "accepted_per_step_median": null,
+  "mean_draft_tokens_per_step_median": null,
+  "aggregate_tok_s_median": null,
+  "decode_ms_per_draft_step_median": null,
+  "any_nan": false,
+  "health_code_after": 200,
+  "short_after": {
+    "http": 200,
+    "ttft_s": 0.17204581783153117,
+    "wall_s": 0.2750293519347906,
+    "decode_s": 0.10298353410325944,
+    "tok_s": 67.97203126648621,
+    "delivered_tok_s": 29.087804424223048,
+    "completion_tokens": 8,
+    "prompt_tokens": 33,
+    "finish_reason": "length",
+    "nan": false,
+    "text_head": "# How a Hash Map Works: A",
+    "text": "# How a Hash Map Works: A",
+    "text_len": 25,
+    "usage": {
+      "prompt_tokens": 33,
+      "completion_tokens": 8,
+      "total_tokens": 41,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      },
+      "completion_tokens_details": {
+        "reasoning_tokens": 0
+      }
+    }
+  }
+}

@@ -19,6 +19,71 @@ variable is concurrency alone.
 
 ---
 
+## UPDATE (2026-10-01): two independent TP=2 instances on MiaAI-Lab's TensorFold recipe replace four-node vLLM TP=4
+
+We replaced the vLLM EXL3 TP=4 deployment with **two independent TP=2 pairs running the
+[TensorFold recipe](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold)**
+(v1.3.2, `92bf731`; engine TensorFold v0.6.0 in NVIDIA's PyTorch container; drafter DFlash2 at a newer
+revision than the vLLM stack used). Each pair is its own endpoint, advertised as `glm-5.3-flash-1` / `-2`.
+Outage for the cutover: 6 min 04 s, with image and weights staged while TP=4 kept serving.
+
+**Caveat first: engine and topology changed together** (and k: TP=4 ran k=3, TensorFold uses up to 7), so
+this compares two deployments as run, not "TP=2 vs TP=4". Quality is **not** shown equal (see below).
+
+**Single stream, same harness (`bench_decode.py`, 400 tokens, temp 0, thinking off, 8 runs, client on a separate machine):**
+
+| tok/s | vLLM TP2 k=7 (09-18) | vLLM TP4 k=3 | TF pair 1 | TF pair 2 | pair 1 vs TP4 |
+|---|---|---|---|---|---|
+| structured | 63.1 | 59.6 | **113.2** | **114.1** | 1.90x |
+| code | 42.4 | 52.8 | **76.8** | **77.1** | 1.45x |
+| prose | 25.6 | 42.6 | **61.8** | **62.3** | 1.45x |
+
+TF sd is 0.1-0.3 on every cell; TTFT 0.15-0.20 s (vLLM TP2: 0.43-0.54 s).
+
+**Replication of the author's table** using a Python port of sparkDash's protocol (unique ` (stream i/n)` suffix per
+stream, `min_tokens`/`ignore_eos`, decode-window aggregate, 5 waves): structured x1 within 1.2 % (113.3 / 114.2 vs
+114.7), structured x4 255 vs 228 (+12 %), prose x1-x4 within +-4 % (61.9 / 76.0 / 92.5 / 108.4 vs 60.4 / 79.2 / 89.5 / 108.8).
+The headline claims reproduce.
+
+**Both pairs at once** (unique prompts): 4 streams total **301 tok/s** (82 per stream), 8 streams **462 tok/s** (61.5 per stream).
+
+**Prefill** (cold, pair 1): 1,777 / 1,857 / 1,816 / 1,708 / 1,522 tok/s at 8k / 32k / 65k / 131k / 262k, consistently
+6-9 % under the author's, probably because our two NICs sit on different subnets and the recipe only bonds same-subnet
+ports, so one rail is used. Identical 32k resent: 0.20 s vs 17.6 s cold. **TP=4 prefill was never measured.**
+
+**Decode tok/s on five real tasks** (single stream) vs the vLLM TP=2 run of 09-17: 1.9x-2.9x (iOS 62 vs 32, web 81 vs 39, prose 51 vs 18).
+
+### Things this measurement taught us
+
+- **Our own earlier concurrency numbers were flattered.** `bench_decode.py` sends the *same* prompt on every stream; at x4 that
+  read +22 % (structured) to +83 % (prose) above the author's table, because lock-stepped identical streams batch ideally.
+  The vLLM x2/x4 aggregates published above used that harness, so treat them as upper bounds. Single-stream cells are unaffected.
+  The corrected harness is in `benchmarks/sparkdash_decode.py`.
+- **A big cold prompt nearly freezes co-resident streams.** A cold 32k prompt arriving while another stream decodes dropped it
+  to ~2 % of normal in the worst 2 s window (longest gap 1.5 s). That is the opposite trade to vLLM's `fair` scheduler, which keeps
+  the incumbent and makes the newcomer wait (`benchmarks/interference.py`).
+- **Defaults differ.** TensorFold defaults to max reasoning effort; the same tool task took 11-12 s at default vs 2 s at `low`.
+- **No restart policy and no OOM protection out of the box.** We added systemd user units (`Restart=on-failure`, crash recovery
+  tested) and a one-line `--oom-score-adj 1000` ([patch](configs/tensorfold-local-patches.diff)). Not tested: a real reboot.
+- **Upstream bugs found and filed:** locale-dependent manifest comparison in `prepare.sh`
+  ([#21](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold/issues/21)), and a disk precheck that demands
+  the full checkpoint size even when every blob is cached
+  ([#24](https://github.com/MiaAI-Lab/GLM-5.3-Flash-EXL3-2x-DGX-Sparks-TensorFold/issues/24)).
+  `docker pull` of the 11.4 GB image also stalled over IPv6; a resumable IPv4 fetch of the same pinned blobs, digest-verified, worked.
+
+### Not established
+
+- **Quality.** `DENSE=q4` and KV fp8 are lossy by the recipe's own statement. Our iOS/web build checks pass (5/6, 6/6 at recipe
+  sampling), but Python passed only 3/12 (5 of 12 hit the token cap), and there is **no vLLM baseline at the same sampling**.
+- **No soak.** Measured about an hour after start; the TP=4 slow tail appeared only after hours.
+- vLLM concurrency under the unique-prompt protocol, and TP=4 prefill, were never measured.
+- Licence: the DFlash2 drafter is CC BY-NC-ND 4.0 (non-commercial).
+
+Raw data: [`results/tf-2xtp2-20261001/`](results/tf-2xtp2-20261001/). Harnesses: `benchmarks/`
+(`both_wave.py` has its two endpoints replaced with `HEAD1`/`HEAD2`; set your own).
+
+---
+
 ## UPDATE (2026-09-30): four-node TP=4 — large prose/code gain, one caveat that limits it, and a slow tail that came and went
 
 We moved the GLM-5.3-Flash EXL3 serve from two nodes to **four (TP=4)** using upstream's

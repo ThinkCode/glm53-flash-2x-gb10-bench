@@ -1,0 +1,47 @@
+[bench] warmup (32 tokens)
+{"tok_s": 109.00548954908409, "ttft_s": 0.15811477904208004, "completion_tokens": 32}
+[bench] run 1/8 phase=structured conc=1
+{"tok_s": 113.67349005364346, "ttft_s": 0.150197294075042, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 2/8 phase=structured conc=1
+{"tok_s": 114.03566399714673, "ttft_s": 0.1509345299564302, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 3/8 phase=structured conc=1
+{"tok_s": 114.00165924583072, "ttft_s": 0.14957975409924984, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 4/8 phase=structured conc=1
+{"tok_s": 113.71644709609716, "ttft_s": 0.14997638203203678, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 5/8 phase=structured conc=1
+{"tok_s": 114.33012693156498, "ttft_s": 0.1498536269646138, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 6/8 phase=structured conc=1
+{"tok_s": 114.56132535168737, "ttft_s": 0.15012852288782597, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 7/8 phase=structured conc=1
+{"tok_s": 114.5301964719251, "ttft_s": 0.15121357096359134, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 8/8 phase=structured conc=1
+{"tok_s": 114.22483095773573, "ttft_s": 0.152339450083673, "completion_tokens": 400, "aggregate_tok_s": null, "finish_reason": "length", "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+{
+  "phase": "structured",
+  "health_code": 200,
+  "health_body": "{\"ok\": true, \"backend\": \"tensorfold\", \"busy\": false, \"requests_running\": 0, \"requests_total\": 27, \"prompt_tokens_total\": 75772, \"completion_tokens_total\": 1030, \"prefill_seconds_total\": 29.7598, \"decode_seconds_total\": 17.3325, \"cached_tokens_total\": 41216, \"rounds_total\": 326, \"drafted_total\": 1019, \"accepted_total\": 677, \"streams\": {\"decoding\": 0, \"prefilling\": 0, \"max\": 4, \"filling\": 0, \"paused\": 0}, \"pool_tokens\": 1728512, \"pool_free_tokens\": 1689600, \"kept_prompts\": 11, \"multi_prefill\": {\"chunks\": 0, \"pieces\": 0, \"rows\": 0}, \"context_length\": 1048576}",
+  "ts": 1790908214.2884004,
+  "prompt": "structured-count-1-200",
+  "thinking": false,
+  "temperature": 0,
+  "concurrency": 1,
+  "note": "decode_ms_per_draft_step is a serving-cycle ratio, not a kernel timing",
+  "warmup": {
+    "tok_s": 109.00548954908409,
+    "ttft_s": 0.15811477904208004,
+    "completion_tokens": 32
+  },
+  "tok_s_median": 114.13024747744123,
+  "tok_s_min": 113.67349005364346,
+  "tok_s_max": 114.56132535168737,
+  "ttft_median_s": 0.150162908481434,
+  "completion_tokens_median": 400.0,
+  "accept_ratio_median": null,
+  "accepted_per_step_median": null,
+  "mean_draft_tokens_per_step_median": null,
+  "aggregate_tok_s_median": null,
+  "decode_ms_per_draft_step_median": null,
+  "any_nan": false,
+  "health_code_after": 200
+}
+wrote /tmp/tfbench/f2/structured-x1.json

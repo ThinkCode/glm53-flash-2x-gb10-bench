@@ -1,0 +1,18 @@
+[
+ {
+  "label": "cold 8192",
+  "prompt_tokens": 8237,
+  "ttft_s": 4.578,
+  "total_s": 4.62,
+  "prefill_tok_s": 1799.2,
+  "cached_tokens": 0
+ },
+ {
+  "label": "cold 32768",
+  "prompt_tokens": 32898,
+  "ttft_s": 17.599,
+  "total_s": 17.642,
+  "prefill_tok_s": 1869.3,
+  "cached_tokens": 0
+ }
+]

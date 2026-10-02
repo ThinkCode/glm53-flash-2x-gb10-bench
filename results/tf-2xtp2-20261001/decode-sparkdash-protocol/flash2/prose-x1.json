@@ -1,0 +1,71 @@
+{
+ "type": "prose",
+ "model": "glm-5.3-flash-2",
+ "concurrency": 1,
+ "reps": 5,
+ "aggregate_tps_median": 61.4,
+ "aggregate_range": [
+  61.02,
+  62.13
+ ],
+ "per_stream_median_tps": 61.4,
+ "per_stream_mean_tps": 61.4,
+ "ttft_median_ms": 172,
+ "waves": [
+  {
+   "concurrency": 1,
+   "streams_ok": 1,
+   "median_tps": 61.02,
+   "mean_tps": 61.02,
+   "min_tps": 61.02,
+   "max_tps": 61.02,
+   "aggregate_tps": 61.02,
+   "ttft_median_ms": 171.2,
+   "wave_s": 6.71
+  },
+  {
+   "concurrency": 1,
+   "streams_ok": 1,
+   "median_tps": 61.68,
+   "mean_tps": 61.68,
+   "min_tps": 61.68,
+   "max_tps": 61.68,
+   "aggregate_tps": 61.68,
+   "ttft_median_ms": 172.2,
+   "wave_s": 6.64
+  },
+  {
+   "concurrency": 1,
+   "streams_ok": 1,
+   "median_tps": 61.44,
+   "mean_tps": 61.44,
+   "min_tps": 61.44,
+   "max_tps": 61.44,
+   "aggregate_tps": 61.44,
+   "ttft_median_ms": 171.6,
+   "wave_s": 6.67
+  },
+  {
+   "concurrency": 1,
+   "streams_ok": 1,
+   "median_tps": 61.32,
+   "mean_tps": 61.32,
+   "min_tps": 61.32,
+   "max_tps": 61.32,
+   "aggregate_tps": 61.32,
+   "ttft_median_ms": 170.5,
+   "wave_s": 6.68
+  },
+  {
+   "concurrency": 1,
+   "streams_ok": 1,
+   "median_tps": 62.13,
+   "mean_tps": 62.13,
+   "min_tps": 62.13,
+   "max_tps": 62.13,
+   "aggregate_tps": 62.13,
+   "ttft_median_ms": 172.7,
+   "wave_s": 6.6
+  }
+ ]
+}

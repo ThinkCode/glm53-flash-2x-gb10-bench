@@ -1,0 +1,47 @@
+[bench] warmup (32 tokens)
+{"tok_s": 108.93124847685719, "ttft_s": 0.1530939091462642, "completion_tokens": 32}
+[bench] run 1/8 phase=structured conc=3
+{"tok_s": 95.86842836184044, "ttft_s": 0.22991190501488745, "completion_tokens": 1200, "aggregate_tok_s": 273.11285543874743, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 2/8 phase=structured conc=3
+{"tok_s": 95.7195006732718, "ttft_s": 0.2266799141652882, "completion_tokens": 1200, "aggregate_tok_s": 272.9362443678766, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 3/8 phase=structured conc=3
+{"tok_s": 96.1572685496428, "ttft_s": 0.22203554911538959, "completion_tokens": 1200, "aggregate_tok_s": 274.43993711825175, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 4/8 phase=structured conc=3
+{"tok_s": 95.60783035345456, "ttft_s": 0.22514366311952472, "completion_tokens": 1200, "aggregate_tok_s": 272.764941384857, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 5/8 phase=structured conc=3
+{"tok_s": 96.094134523222, "ttft_s": 0.22619288600981236, "completion_tokens": 1200, "aggregate_tok_s": 274.0129189929057, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 6/8 phase=structured conc=3
+{"tok_s": 96.10106895940643, "ttft_s": 0.2241220239084214, "completion_tokens": 1200, "aggregate_tok_s": 274.14903867961584, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 7/8 phase=structured conc=3
+{"tok_s": 95.77004677048798, "ttft_s": 0.22573737683705986, "completion_tokens": 1200, "aggregate_tok_s": 273.16328709801166, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+[bench] run 8/8 phase=structured conc=3
+{"tok_s": 77.9675137768301, "ttft_s": 0.39012189116328955, "completion_tokens": 1200, "aggregate_tok_s": 217.82689163858234, "finish_reason": ["length", "length", "length"], "nan": false, "accept_ratio": null, "accepted_per_step": null, "mean_draft_tokens_per_step": null, "pos": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+{
+  "phase": "structured",
+  "health_code": 200,
+  "health_body": "{\"ok\": true, \"backend\": \"tensorfold\", \"busy\": false, \"requests_running\": 0, \"requests_total\": 83, \"prompt_tokens_total\": 83808, \"completion_tokens_total\": 21206, \"prefill_seconds_total\": 39.9807, \"decode_seconds_total\": 293.5443, \"cached_tokens_total\": 48128, \"rounds_total\": 4723, \"drafted_total\": 19402, \"accepted_total\": 16400, \"streams\": {\"decoding\": 0, \"prefilling\": 0, \"max\": 4, \"filling\": 0, \"paused\": 0}, \"pool_tokens\": 2177024, \"pool_free_tokens\": 2142208, \"kept_prompts\": 9, \"multi_prefill\": {\"chunks\": 11, \"pieces\": 22, \"rows\": 654}, \"context_length\": 1048576}",
+  "ts": 1790907977.772776,
+  "prompt": "structured-count-1-200",
+  "thinking": false,
+  "temperature": 0,
+  "concurrency": 3,
+  "note": "decode_ms_per_draft_step is a serving-cycle ratio, not a kernel timing",
+  "warmup": {
+    "tok_s": 108.93124847685719,
+    "ttft_s": 0.1530939091462642,
+    "completion_tokens": 32
+  },
+  "tok_s_median": 95.81923756616422,
+  "tok_s_min": 77.9675137768301,
+  "tok_s_max": 96.1572685496428,
+  "ttft_median_s": 0.2259651314234361,
+  "completion_tokens_median": 1200.0,
+  "accept_ratio_median": null,
+  "accepted_per_step_median": null,
+  "mean_draft_tokens_per_step_median": null,
+  "aggregate_tok_s_median": 273.1380712683796,
+  "decode_ms_per_draft_step_median": null,
+  "any_nan": false,
+  "health_code_after": 200
+}
+wrote /tmp/tfbench/f1/structured-x3.json

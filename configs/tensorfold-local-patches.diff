@@ -1,0 +1,14 @@
+diff --git a/start.sh b/start.sh
+index 250abbc..999c1c8 100755
+--- a/start.sh
++++ b/start.sh
+@@ -209,7 +209,8 @@ fi
+ ENV_ARGS=(-e HF_HUB_OFFLINE="${HF_HUB_OFFLINE:-1}")
+ while IFS='=' read -r name _; do ENV_ARGS+=(-e "$name=${!name}"); done < <(env | grep -E '^(TENSORFOLD|TF_GLM|TF_ROCE)_[A-Z0-9_]+=' || true)
+ RUN_ARGS=(--gpus all --ipc=host --network host --shm-size 16g --device /dev/infiniband --cap-add IPC_LOCK
+-          --ulimit memlock=-1 --ulimit stack=67108864)
++          --ulimit memlock=-1 --ulimit stack=67108864
++          --oom-score-adj 1000)   # LOCAL PATCH (not upstream): if memory runs out the kernel kills the engine, not sshd/systemd
+ 
+ # ---------------------------------------------------------------- 3. launch, 4. load (a second try when the window does not fit)
+ # No token goes into the containers: the ranks read only the local cache (HF_HUB_OFFLINE=1), and with HF_HUB_OFFLINE=0
